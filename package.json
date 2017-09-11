@@ -1,0 +1,32 @@
+{
+  "name": "api-contracts",
+  "version": "0.1.2",
+  "description": "Suite of utilities for working with the API Contracts testing model.",
+  "main": "index.js",
+  "scripts": {
+    "test": "$(npm bin)/jest"
+  },
+  "bin": {
+    "jss": "./bin/jss.js"
+  },
+  "author": "Kevin Altman <kevin@itsthatguy.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^1.7.0",
+    "colors": "^1.1.2",
+    "fs-extra": "^4.0.1",
+    "json-schema-faker": "^0.5.0-rc10",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "strip-color": "^0.1.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "lib/**/*.js",
+      "!lib/runCommand.js"
+    ]
+  }
+}

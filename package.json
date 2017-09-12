@@ -4,7 +4,10 @@
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "index.js",
   "scripts": {
-    "test": "$(npm bin)/jest"
+    "test": "$(npm bin)/jest",
+    "prepublishOnly": "",
+    "clean": "rm -rf ./dist",
+    "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },
   "bin": {
     "jss": "./bin/jss.js"
@@ -19,8 +22,10 @@
     "yargs": "^8.0.2"
   },
   "devDependencies": {
+    "@types/node": "^8.0.28",
     "jest": "^20.0.4",
-    "strip-color": "^0.1.0"
+    "strip-color": "^0.1.0",
+    "typescript": "^2.5.2"
   },
   "jest": {
     "collectCoverage": true,

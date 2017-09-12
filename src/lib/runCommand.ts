@@ -1,6 +1,6 @@
-const { log } = require('./log');
+import { log } from './log'
 
-const runCommand = function (command, options) {
+const runCommand = function (command, options?) {
   const execSync = require('child_process').execSync;
   const defaultOptions = {
     NODE_ENV: process.env.NODE_ENV,
@@ -24,4 +24,4 @@ const runCommand = function (command, options) {
   });
 };
 
-module.exports = runCommand;
+export default runCommand

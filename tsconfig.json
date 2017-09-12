@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "dist",
+    "types" : ["node"]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./typings"
+  ]
+}

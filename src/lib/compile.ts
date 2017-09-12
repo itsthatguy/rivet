@@ -3,18 +3,18 @@
 // TODO: make this configurable
 const DEFAULT_BASE_DIR = '__contracts__/';
 
-const glob = require('glob');
-const path = require('path');
-const fs = require('fs-extra');
-const { existsSync } = require('fs');
-const { log, warn, error } = require('./log');
+import glob from 'glob'
+import { join, parse, resolve } from 'path'
+import fs from 'fs-extra'
+import { existsSync } from 'fs'
+import { log, warn, error } from './log'
 
 const saveToFile = (data, filename, dir = 'data/') => {
-  const projectRoot = path.resolve(process.cwd());
-  const dirpath = path.resolve(projectRoot, dir);
+  const projectRoot = resolve(process.cwd());
+  const dirpath = resolve(projectRoot, dir);
   fs.ensureDirSync(dirpath);
 
-  const outputPath = path.resolve(dirpath, filename);
+  const outputPath = resolve(dirpath, filename);
   log(`Saving JSON contract: ${dir}/${filename}`);
   return fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 };
@@ -49,7 +49,7 @@ const globOptions = (ignore, out) => {
 };
 
 
-const compileHandler = (argv) => {
+export function compileHandler (argv) {
   log('Compiling contracts to JSON');
   const { clean, out, src, ignore } = argv;
   const pathGlob = src || '**/*.contract.js';
@@ -60,17 +60,15 @@ const compileHandler = (argv) => {
 
   glob(pathGlob, options, function (err, src) {
     src.forEach(function (file) {
-      const { dir, name } = path.parse(file);
+      const { dir, name } = parse(file);
 
       // clear cache to rebuild the JSON
-      const contractPath = path.resolve(process.cwd(), file);
+      const contractPath = resolve(process.cwd(), file);
       delete require.cache[require.resolve(contractPath)];
       const data = require(contractPath);
 
       const targetDir = dir.replace(DEFAULT_BASE_DIR, '');
-      saveToFile(data, `${name}.json`, path.join(out, targetDir));
+      saveToFile(data, `${name}.json`, join(out, targetDir));
     });
   });
 }
-
-module.exports = compileHandler;

@@ -1,28 +1,28 @@
-const runCommand = require('./runCommand');
-const { log } = require('./log');
-const compileHandler = require('./compile');
+import runCommand from './runCommand'
+import { log } from './log'
+import { compileHandler } from './compile'
 
-const versionHandler = (argv) => {
+export function versionHandler (argv) {
   const { version } = argv;
   if (!version) return null;
   log('Bumping package version');
   runCommand(`npm version ${version} --no-git-tag-version`);
-};
+}
 
-const publishHandler = (argv) => {
+export function publishHandler (argv) {
   versionHandler(argv);
   log('Publishing package');
   runCommand('npm publish');
-};
+}
 
-const linkHandler = (argv) => {
+export function linkHandler (argv) {
   const { pkg } = argv;
   log('Linking package');
   if (!pkg) return runCommand('npm link');
   runCommand(`npm link ${pkg}`, { cwd: process.cwd() });
-};
+}
 
-const watchHandler = (argv) => {
+export function watchHandler (argv) {
   log('Watching for changes...');
   var chokidar = require('chokidar');
 
@@ -33,12 +33,6 @@ const watchHandler = (argv) => {
   chokidar.watch(argv.src, {ignored: '**/node_modules/**/*'})
   .on('add', compile)
   .on('change', compile);
-};
+}
 
-module.exports = {
-  versionHandler,
-  publishHandler,
-  linkHandler,
-  watchHandler,
-  compileHandler,
-};
+export { compileHandler }

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
 
-const {
+import {
   linkHandler,
   publishHandler,
   versionHandler,
   watchHandler,
   compileHandler,
-} = require('../lib');
+} from '../lib'
 
 const versionOptions = {
   command: 'version <version|major|minor|patch>',

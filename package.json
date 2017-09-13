@@ -2,7 +2,7 @@
   "name": "api-contracts",
   "version": "0.1.2",
   "description": "Suite of utilities for working with the API Contracts testing model.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "$(npm bin)/jest",
     "prepublishOnly": "",
@@ -10,7 +10,7 @@
     "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },
   "bin": {
-    "jss": "./bin/jss.js"
+    "jss": "./dist/bin/apic.js"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",
@@ -22,16 +22,34 @@
     "yargs": "^8.0.2"
   },
   "devDependencies": {
+    "@types/colors": "^1.1.3",
+    "@types/glob": "^5.0.32",
+    "@types/jest": "^20.0.8",
     "@types/node": "^8.0.28",
+    "@types/yargs": "^8.0.2",
     "jest": "^20.0.4",
     "strip-color": "^0.1.0",
+    "ts-jest": "^21.0.0",
+    "tslint": "^5.7.0",
     "typescript": "^2.5.2"
   },
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "lib/**/*.js",
-      "!lib/runCommand.js"
+      "src/**/*.ts",
+      "!src/bin/**/*.ts",
+      "!src/lib/runCommand.ts"
+    ],
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
     ]
   }
 }

@@ -1,22 +1,18 @@
 import { join } from 'path';
 import * as properties from './properties';
 import * as types from './types';
-import Faker from 'json-schema-faker';
+import { resolve } from 'json-schema-faker';
 
-const loadSchema = function (rootSchemaPath:string, schemaPath:string):any {
+export const loadSchema = (rootSchemaPath: string, schemaPath: string): any => {
   const fullSchemaPath = join(rootSchemaPath, schemaPath);
   const schema = require(fullSchemaPath);
   return schema;
 };
 
-const generateResponseFromSchema = function (rootSchemaPath:string, schemaPath:string):any {
+export const generateResponseFromSchema = (rootSchemaPath: string, schemaPath: string): Promise<any> => {
   const schema = loadSchema(rootSchemaPath, schemaPath);
-  return Faker.resolve(schema);
+  return resolve(schema);
 };
 
-export default {
-  properties: properties,
-  types: types,
-  loadSchema: loadSchema,
-  generateResponseFromSchema: generateResponseFromSchema,
-};
+export { properties };
+export { types };

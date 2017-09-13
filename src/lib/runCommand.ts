@@ -1,6 +1,13 @@
-import { log } from './log'
+import { log } from './log';
 
-const runCommand = function (command, options?) {
+export interface IRunCommandOptions {
+  NODE_ENV?: string;
+  PATH?: string;
+  cwd?: string;
+  SHELL?: string;
+}
+
+const runCommand = (command: string, options?: IRunCommandOptions): void => {
   const execSync = require('child_process').execSync;
   const defaultOptions = {
     NODE_ENV: process.env.NODE_ENV,
@@ -20,8 +27,8 @@ const runCommand = function (command, options?) {
       PATH: opts.PATH,
       SHELL: opts.SHELL,
     },
-    stdio:[0, 1, 2],
+    stdio: [0, 1, 2],
   });
 };
 
-export default runCommand
+export default runCommand;

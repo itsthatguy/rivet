@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const yargs = require('yargs');
+import * as yargs from 'yargs';
 
 import {
   linkHandler,
@@ -7,33 +7,33 @@ import {
   versionHandler,
   watchHandler,
   compileHandler,
-} from '../lib'
+} from '../lib/handlers';
 
-const versionOptions = {
+const versionOptions: yargs.CommandModule = {
   command: 'version <version|major|minor|patch>',
   aliases: ['version', 'v'],
-  desc: 'Bump the package version',
+  describe: 'Bump the package version',
   handler: versionHandler,
 };
 
-const publishOptions = {
+const publishOptions: yargs.CommandModule = {
   command: 'publish [version|major|minor|patch]',
   aliases: ['publish', 'pub', 'p'],
-  desc: 'Publish the package with an optional version bump',
+  describe: 'Publish the package with an optional version bump',
   handler: publishHandler,
 };
 
-const linkOptions = {
+const linkOptions: yargs.CommandModule = {
   command: 'link [pkg]',
   aliases: ['link', 'l'],
-  desc: 'Link the package in the global node_modules',
+  describe: 'Link the package in the global node_modules',
   handler: linkHandler,
 };
 
-const compileOptions = {
+const compileOptions: yargs.CommandModule = {
   command: 'compile [src]',
   aliases: ['compile', 'c'],
-  desc: 'Compile contracts from the [src] to JSON',
+  describe: 'Compile contracts from the [src] to JSON',
   builder: {
     clean: { default: false },
     src: {
@@ -52,7 +52,7 @@ const compileOptions = {
   handler: compileHandler,
 };
 
-const watchOptions = {
+const watchOptions: yargs.CommandModule = {
   command: 'watch',
   aliases: ['w'],
   builder: {
@@ -61,11 +61,14 @@ const watchOptions = {
       aliases: ['input', 'inputDir', 'in'],
     },
   },
-  desc: 'Watch and compile changes to contracts',
+  describe: 'Watch and compile changes to contracts',
   handler: watchHandler,
 };
 
-const pkgVersion = require('../package.json').version;
+// tslint:disable-next-line: no-var-requires
+const { version: pkgVersion } = require('../../package.json');
+
+// tslint:disable-next-line: no-unused-expression
 yargs
 .command(versionOptions)
 .command(publishOptions)
@@ -73,11 +76,11 @@ yargs
 .command(compileOptions)
 .command(watchOptions)
 .help()
-.check((argv) => {
-  if (argv._.length === 0) yargs.showHelp();
-  return true
+.check((argv: any): boolean => {
+  if (argv._.length === 0) { yargs.showHelp(); }
+  return true;
 })
 .usage('Usage:\n  jss <publish|version> [version|major|minor|patch]')
 .epilogue(`Version: v${pkgVersion}`)
-.version(() => pkgVersion)
-.argv
+.version((): string => pkgVersion)
+.argv;

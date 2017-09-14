@@ -36,7 +36,7 @@ export const watchHandler = (argv: IHandlerArgs): void => {
   log('Watching for changes...');
   const chokidar = require('chokidar');
 
-  const compile = (path: string): void => {
+  const compile = (path: string): any[] => {
     return compileHandler({ src: path, ignore: [false], out: '__contracts__/contracts/' });
   };
 

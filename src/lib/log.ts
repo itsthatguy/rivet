@@ -1,7 +1,7 @@
 import * as colors from 'colors';
 
-const textHelpers = {
-  pkg: 'apic',
+export const textHelpers = {
+  pkg: 'proco',
   cmd: colors.green('cmd'),
   info: colors.green('info'),
   warn: colors.yellow('warn'),

@@ -15,8 +15,8 @@ describe('versionHandler', () => {
 
   it('bumps the version if one is specified', () => {
     const fn = versionHandler({ version: 'patch' });
-    expect(console.out).toEqual('apic info Bumping package version\n' +
-                        'apic cmd npm version patch --no-git-tag-version\n');
+    expect(console.out).toEqual('proco info Bumping package version\n' +
+                                'proco cmd npm version patch --no-git-tag-version\n');
   });
 });
 
@@ -30,9 +30,9 @@ describe('publishHandler', () => {
 
   it('bumps the version if one is specified', () => {
     const fn = publishHandler({ version: 'patch' });
-    expect(console.out).toEqual('apic info Bumping package version\n' +
-                        'apic cmd npm version patch --no-git-tag-version\n' +
-                        'apic info Publishing package\n' +
-                        'apic cmd npm publish\n');
+    expect(console.out).toEqual('proco info Bumping package version\n' +
+                                'proco cmd npm version patch --no-git-tag-version\n' +
+                                'proco info Publishing package\n' +
+                                'proco cmd npm publish\n');
   });
 });

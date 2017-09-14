@@ -1,4 +1,4 @@
-{
+export default {
   "id": "properties.roles",
   "type": "array",
   "minItems": 1,

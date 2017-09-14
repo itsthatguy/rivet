@@ -1,6 +1,6 @@
 // tslint:disable: no-var-requires
-export const links = require('./links.json');
-export const roles = require('./roles.json');
+import links from './links';
+import roles from './roles';
 
 export default {
   links,

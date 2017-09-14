@@ -1,4 +1,4 @@
-{
+export default {
   "id": "types.uuid",
   "type": "string",
   "format": "uuid",

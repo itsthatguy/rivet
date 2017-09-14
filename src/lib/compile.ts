@@ -35,8 +35,8 @@ const attemptClean = (clean: string): void => {
   }
 };
 
-const globOptions = (ignore: string[] | boolean[], out: string): glob.IOptions => {
-  const options: glob.IOptions = (!ignore[0])
+const globOptions = (ignore: string[] | boolean[] = [], out: string): glob.IOptions => {
+  const options: glob.IOptions = (ignore.length > 0 && !ignore[0])
   ? {
       ignore: [
         '**/node_modules/**/*',
@@ -48,7 +48,7 @@ const globOptions = (ignore: string[] | boolean[], out: string): glob.IOptions =
   return options;
 };
 
-export const compileHandler = (argv: IHandlerArgs): void => {
+export const compileHandler = (argv: IHandlerArgs): any[] => {
   log('Compiling contracts to JSON');
   const { clean, out, src: argSrc, ignore } = argv;
   const pathGlob = argSrc || '**/*.contract.js';
@@ -57,17 +57,20 @@ export const compileHandler = (argv: IHandlerArgs): void => {
 
   const options = globOptions(ignore, out);
 
-  glob(pathGlob, options, (err: Error, src: string[]): void => {
-    src.forEach((file: string): void => {
-      const { dir, name } = parse(file);
+  const paths = glob.sync(pathGlob, options);
 
-      // clear cache to rebuild the JSON
-      const contractPath = resolve(process.cwd(), file);
-      delete require.cache[require.resolve(contractPath)];
-      const data = require(contractPath);
+  return paths.reduce((result: any[], file: string): any[] => {
+    const { dir, name } = parse(file);
 
-      const targetDir = dir.replace(DEFAULT_BASE_DIR, '');
-      saveToFile(data, `${name}.json`, join(out, targetDir));
-    });
-  });
+    // clear cache to rebuild the JSON
+    const contractPath = resolve(process.cwd(), file);
+    delete require.cache[require.resolve(contractPath)];
+    const data = require(contractPath);
+
+    const targetDir = dir.replace(DEFAULT_BASE_DIR, '');
+    const object = saveToFile(data, `${name}.json`, join(out, targetDir));
+    result.push(object);
+
+    return result;
+  }, []);
 };

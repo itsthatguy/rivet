@@ -1,5 +1,7 @@
 import * as strip from 'strip-color';
 
+const originalConsole = console;
+
 interface IFauxLogger {
   out: string;
   resetLog
@@ -19,7 +21,7 @@ class FauxLogger {
   public error = (...args): void => this.log(args);
 
   // for debugging
-  public dog = (...args): void => console.log(args);
+  public dog = (...args): void => originalConsole.log(...args);
 }
 
 global.console = new FauxLogger();

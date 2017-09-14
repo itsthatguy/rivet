@@ -1,9 +1,15 @@
 // tslint:disable: no-var-requires
-export const email = require('./email');
-export const uuid = require('./uuid');
-export const uri = require('./uri');
-export const token = require('./token');
-export const phone = require('./phone');
+import email from './email';
+import uuid from './uuid';
+import uri from './uri';
+import token from './token';
+import phone from './phone';
+
+export { email };
+export { uuid };
+export { uri };
+export { token };
+export { phone };
 
 export default {
   email,

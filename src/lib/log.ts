@@ -5,12 +5,12 @@ const textHelpers = {
   cmd: colors.green('cmd'),
   info: colors.green('info'),
   warn: colors.yellow('warn'),
-  error: colors.red('info'),
+  error: colors.red('error'),
 };
 
 const print = (logger: any, type: string, message: string, fallbackType: string) => {
   const msg = message || type;
-  const msgType = textHelpers[type] || textHelpers[fallbackType];
+  const msgType = textHelpers[type] || textHelpers[fallbackType || message];
 
   logger(`${textHelpers.pkg} ${msgType} ${msg}`);
 };

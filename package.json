@@ -34,6 +34,7 @@
     "typescript": "^2.5.2"
   },
   "jest": {
+    "setupFiles": ["<rootDir>/__tests__/test-setup.ts"],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts",

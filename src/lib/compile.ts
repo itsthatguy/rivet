@@ -4,7 +4,7 @@ const DEFAULT_BASE_DIR = '__contracts__/';
 import { CommandModule } from 'yargs';
 import * as glob from 'glob';
 import { join, parse, resolve } from 'path';
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
 import { log, warn, error } from './log';
 import { IHandlerArgs } from './handlers';

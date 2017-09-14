@@ -1,9 +1,9 @@
 const fs = jest.genMockFromModule('fs-extra');
 
-const ensureDirSync = () => true;
-const removeSync = () => true;
+export const ensureDirSync = () => true;
+export const removeSync = () => true;
 
-const writeFileSync = (path, data) => {
+export const writeFileSync = (path, data) => {
   return { path, data };
 };
 

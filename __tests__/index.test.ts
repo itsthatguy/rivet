@@ -2,7 +2,6 @@ import {
   loadSchema,
   generateResponseFromSchema,
   types,
-  properties,
 } from '../src';
 
 describe('module', () => {
@@ -29,19 +28,6 @@ describe('module', () => {
     it('generates fake data', async () => {
       const response: any = await generateResponseFromSchema(__dirname, './fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
-    });
-  });
-
-  describe('.types', () => {
-    it('has only the expected types', () => {
-      const propertiesKeys = Object.keys(properties);
-
-      expect(propertiesKeys.length).toEqual(3);
-      expect(propertiesKeys).toEqual(expect.arrayContaining([
-        'links',
-        'roles',
-        'default'
-      ]));
     });
   });
 

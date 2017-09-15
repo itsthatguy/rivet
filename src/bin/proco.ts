@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 
+import { textHelpers } from '../lib/log';
+
 import {
   linkHandler,
   publishHandler,
@@ -80,7 +82,7 @@ yargs
   if (argv._.length === 0) { yargs.showHelp(); }
   return true;
 })
-.usage('Usage:\n  jss <publish|version> [version|major|minor|patch]')
+.usage(`Usage:\n  ${textHelpers.pkg} <publish|version> [version|major|minor|patch]`)
 .epilogue(`Version: v${pkgVersion}`)
 .version((): string => pkgVersion)
 .argv;

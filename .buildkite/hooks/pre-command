@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# always make sure that we are on the right version of nvm, for every buildkite command
+if [ "$BUILDKITE_COMMAND" != "buildkite-agent pipeline upload" ]; then
+  # nvm env var dependencies
+  export MANPATH=/usr/share/man
+  export NVM_DIR="$HOME/.nvm"
+
+  # only install nvm if it doesn't exist
+  if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+  fi
+
+  # This loads nvm
+  source "$NVM_DIR/nvm.sh"
+  nvm install 8.4
+  nvm use 8.4
+  npm install
+fi

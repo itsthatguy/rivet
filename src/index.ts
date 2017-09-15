@@ -1,5 +1,4 @@
 import { join } from 'path';
-import * as properties from './properties';
 import * as types from './types';
 import { resolve } from 'json-schema-faker';
 
@@ -14,5 +13,4 @@ export const generateResponseFromSchema = (rootSchemaPath: string, schemaPath: s
   return resolve(schema);
 };
 
-export { properties };
 export { types };

@@ -1,4 +1,4 @@
-# api-contracts
+# proco
 
 This package ships with 2 primary functions, categorized as such:
 1. [Helpers](#helpers)

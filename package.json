@@ -1,5 +1,5 @@
 {
-  "name": "api-contracts",
+  "name": "proco",
   "version": "0.1.5",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
     "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },
   "bin": {
-    "jss": "./dist/bin/apic.js"
+    "proco": "./dist/bin/proco.js"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",

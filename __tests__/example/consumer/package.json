@@ -1,0 +1,19 @@
+{
+  "name": "proco-example-consumer",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "config": "$(npm bin)/proco config",
+    "test": "$(npm bin)/jest"
+  },
+  "devDependencies": {
+    "proco": "^0.1.5",
+    "jest": "^20.0.4",
+    "jest-json-schema": "^1.2.0"
+  },
+  "proco": {
+    "compiledContractsRoot": "contracts/json/"
+  }
+}

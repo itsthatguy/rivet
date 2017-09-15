@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
+import { loadConfig } from '../util/config-loader';
 
 import { textHelpers } from '../lib/log';
 
@@ -77,6 +78,12 @@ yargs
 .command(linkOptions)
 .command(compileOptions)
 .command(watchOptions)
+.command({
+  command: 'config',
+  handler: (argv) => {
+    loadConfig();
+  }
+})
 .help()
 .check((argv: any): boolean => {
   if (argv._.length === 0) { yargs.showHelp(); }

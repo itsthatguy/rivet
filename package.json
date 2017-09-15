@@ -3,9 +3,11 @@
   "version": "0.1.5",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "$(npm bin)/jest",
     "prepublishOnly": "npm run compile",
+    "watch": "npm run compile -- --watch",
     "clean": "rm -rf ./dist",
     "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },

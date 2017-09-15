@@ -1,0 +1,6 @@
+steps:
+  - label: ":npm: Install dependencies"
+    command: npm install
+
+  - label: ":jest: Run Tests"
+    command: npm test

@@ -137,5 +137,5 @@ The CLI is used to version bump and publish contracts inside an application. Onc
 Usage:
 ```shell
 # To see all available options
-apic --help
+proco --help
 ```

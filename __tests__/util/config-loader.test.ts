@@ -30,7 +30,7 @@ describe('config-loader', () => {
     it('returns config', () => {
       const pkgConfig = configLoader.getPkgConfig();
       expect(pkgConfig).toEqual({
-        compiledContractsRoot: 'contracts/json/'
+        compiledContractsPath: 'contracts/json/'
       });
     });
   });
@@ -54,9 +54,9 @@ describe('config-loader', () => {
   });
 
   it('returns project config', () => {
-    expect(configLoader.loadConfig()).toEqual({
+    expect(configLoader.load()).toEqual({
       contractsRoot: 'contracts/',
-      compiledContractsRoot: 'contracts/json/'
+      compiledContractsPath: 'contracts/json/'
     });
   });
 });

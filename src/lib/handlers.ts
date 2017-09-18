@@ -8,6 +8,7 @@ export interface IHandlerArgs {
   clean?: string;
   out?: string;
   src?: string;
+  cwd?: string;
   pkg?: string;
   ignore?: string[] | boolean[];
 }

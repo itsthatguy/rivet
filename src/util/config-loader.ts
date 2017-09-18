@@ -47,7 +47,7 @@ export const loadFiles = (paths: string[]): any[] => {
   return configs;
 };
 
-export const loadConfig = (): any => {
+export const load = (): any => {
   const configFiles: string[] = getFiles(PREFIX, POSSIBLE_EXTENSIONS);
   const configs: any = [
     ...loadFiles(configFiles),

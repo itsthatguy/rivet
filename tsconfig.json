@@ -13,5 +13,8 @@
   "include": [
     "src",
     "node_modules/@types"
+  ],
+  "exclude": [
+    "**/__mocks__/*"
   ]
 }

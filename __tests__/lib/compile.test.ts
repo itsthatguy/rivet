@@ -8,14 +8,35 @@ describe('compile', () => {
     const contracts = compileHandler({
       clean: '',
       out: './foo',
-      src: 'src/types/email.ts',
+      src: 'example.contract.js',
+      cwd: 'example/consumer/contracts/',
     });
 
-    expect(contracts[0].path).toContain('types/email.json');
-    expect(JSON.parse(contracts[0].data)).toEqual({default: {
-      id: 'types.email',
-      type: 'string',
-      format: 'email'
-    }});
+    expect(contracts[0].path).toContain('example.contract.json');
+    expect(JSON.parse(contracts[0].data)).toEqual({
+      title: 'Index',
+      required: [
+        'name',
+        'token',
+        'description',
+        'updated_at'
+      ],
+      properties: {
+        name: {
+          type: 'string'
+        },
+        token: {
+          id: 'types.token',
+          type: 'string',
+          pattern: '^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$'
+        },
+        description: {
+          type: 'string'
+        },
+        updated_at: {
+          type: 'string'
+        }
+      }
+    });
   });
 });

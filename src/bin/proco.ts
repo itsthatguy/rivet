@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
-import { loadConfig } from '../util/config-loader';
 
 import { textHelpers } from '../lib/log';
+import { Config } from '../lib/config';
 
 import {
   linkHandler,
@@ -43,13 +43,14 @@ const compileOptions: yargs.CommandModule = {
       default: false,
       aliases: ['input', 'inputDir', 'in'],
     },
+    cwd: { default: false, },
     ignore: {
       default: false,
       type: 'array'
     },
     out: {
       aliases: ['outputDir', 'output'],
-      default: '__contracts__/contracts/',
+      default: Config.compiledContractsRoot,
     }
   },
   handler: compileHandler,
@@ -80,8 +81,9 @@ yargs
 .command(watchOptions)
 .command({
   command: 'config',
+  describe: 'Displays current configuration options',
   handler: (argv) => {
-    loadConfig();
+    console.log(Config);
   }
 })
 .help()

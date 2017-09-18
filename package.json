@@ -42,6 +42,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts",
+      "!dist/",
       "!src/bin/**/*.ts",
       "!src/lib/runCommand.ts"
     ],
@@ -49,6 +50,10 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "dist/",
+      "node_modules/"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

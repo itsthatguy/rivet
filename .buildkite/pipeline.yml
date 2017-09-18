@@ -1,6 +1,9 @@
 steps:
   - label: ":npm: Install dependencies"
-    command: npm install
+    command:
+      - npm install
+      - (cd example/consumer/ && npm install)
+      - (cd example/producer/ && npm install)
 
   - label: ":jest: Run Tests"
     command: npm test

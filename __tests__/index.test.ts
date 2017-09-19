@@ -6,8 +6,8 @@ import {
 
 describe('module', () => {
   describe('.loadSchema()', () => {
-    it('loads the file', () => {
-      const schema: any = loadSchema(__dirname, './fixtures/schema.fixture.json');
+    it('loads from a file path', () => {
+      const schema: any = loadSchema(__dirname + '/fixtures/schema.fixture.json');
       expect(schema).toMatchObject({
         title: 'my schema',
         required: ['data'],
@@ -25,10 +25,23 @@ describe('module', () => {
   });
 
   describe('.generateResponseFromSchema()', () => {
-    it('generates fake data', async () => {
-      const response: any = await generateResponseFromSchema(__dirname, './fixtures/schema.fixture.json');
+    it('generates fake data from a file', async () => {
+      const response: any = await generateResponseFromSchema(__dirname + '/fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
     });
+
+    it('generates fake data from a schema object', async () => {
+      const schema = {
+        title: 'Schema Object',
+        required: [ 'name' ],
+        properties: {
+          name: { type: 'string' }
+        }
+      };
+
+      const response: any = await generateResponseFromSchema(schema);
+      expect(typeof response.name).toBe('string');
+    })
   });
 
   describe('.types', () => {

@@ -6,10 +6,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "$(npm bin)/jest",
-    "prepublishOnly": "npm run compile",
-    "watch": "npm run compile -- --watch",
+    "prepublishOnly": "npm run build",
+    "watch": "npm run build -- --watch",
     "clean": "rm -rf ./dist",
-    "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/proco dist/bin/"
+    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/proco dist/bin/",
+    "build:watch": "npm run watch"
   },
   "bin": {
     "proco": "./dist/bin/proco"
@@ -30,6 +31,7 @@
     "@types/node": "^8.0.28",
     "@types/yargs": "^8.0.2",
     "jest": "^20.0.4",
+    "proco": "file:./",
     "strip-color": "^0.1.0",
     "ts-jest": "^21.0.0",
     "tslint": "^5.7.0",

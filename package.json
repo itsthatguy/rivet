@@ -43,8 +43,7 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!dist/",
-      "!src/bin/**/*.ts",
-      "!src/lib/runCommand.ts"
+      "!src/bin/**/*.ts"
     ],
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"

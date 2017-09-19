@@ -7,14 +7,14 @@ describe('compile', () => {
   it('compiles file to location specified', () => {
     const contracts = compileHandler({
       clean: '',
-      out: './foo',
-      src: 'example.contract.js',
+      out: 'example/consumer/contracts/',
       cwd: 'example/consumer/contracts/',
     });
 
-    expect(contracts[0].path).toContain('example.contract.json');
+    expect(contracts[0].path).toContain('contracts/json/example.contract.json');
+    expect(contracts[1].path).toContain('contracts/json/subfolder/nested.contract.json');
     expect(JSON.parse(contracts[0].data)).toEqual({
-      title: 'Index',
+      title: 'Example Contract',
       required: [
         'name',
         'token',
@@ -36,6 +36,14 @@ describe('compile', () => {
         updated_at: {
           type: 'string'
         }
+      }
+    });
+
+    expect(JSON.parse(contracts[1].data)).toEqual({
+      title: 'Nested Contract',
+      required: [ 'name' ],
+      properties: {
+        name: { type: 'string' },
       }
     });
   });

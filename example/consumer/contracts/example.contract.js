@@ -1,7 +1,7 @@
 const { types } = require('proco');
 
 module.exports = {
-  title: 'Index',
+  title: 'Example Contract',
   required: ['name', 'token', 'description', 'updated_at'],
 
   properties: {

@@ -43,7 +43,9 @@ const compileOptions: yargs.CommandModule = {
       default: false,
       aliases: ['input', 'inputDir', 'in'],
     },
-    cwd: { default: false, },
+    cwd: {
+      default: CONFIG.contractsRoot,
+    },
     ignore: {
       default: false,
       type: 'array'
@@ -61,9 +63,20 @@ const watchOptions: yargs.CommandModule = {
   aliases: ['w'],
   builder: {
     src: {
-      default: '__contracts__/**/*.contract.js',
+      default: CONFIG.contractsPath,
       aliases: ['input', 'inputDir', 'in'],
     },
+    cwd: {
+      default: CONFIG.contractsRoot,
+    },
+    ignore: {
+      default: false,
+      type: 'array'
+    },
+    out: {
+      aliases: ['outputDir', 'output'],
+      default: CONFIG.compiledContractsRoot,
+    }
   },
   describe: 'Watch and compile changes to contracts',
   handler: watchHandler,

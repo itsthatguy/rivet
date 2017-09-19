@@ -47,7 +47,6 @@ export const loadFiles = (paths: string[], options: any): any[] => {
 };
 
 export const load = (cwd: string): any => {
-  console.log('cwd coming in:', cwd);
   const configFiles: string[] = getFiles(PREFIX, POSSIBLE_EXTENSIONS, { cwd });
   const configs: any = [
     ...loadFiles(configFiles, { cwd }),

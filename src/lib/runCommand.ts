@@ -1,4 +1,5 @@
 import { log } from './log';
+import { Config } from './config';
 
 export interface IRunCommandOptions {
   NODE_ENV?: string;

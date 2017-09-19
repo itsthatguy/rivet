@@ -7,7 +7,6 @@ import { existsSync } from 'fs';
 import { log, warn, error } from './log';
 import { IHandlerArgs } from './handlers';
 import { Config } from './config';
-import { APP_ROOT } from '../util/paths';
 
 const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
   const dirpath = resolve(Config.contractsRoot, dir);
@@ -45,7 +44,7 @@ const globOptions = (ignore: string[] | boolean[] = [], out: string, workingDir:
   : { ignore };
 
   return Object.assign({},
-    { cwd: join(APP_ROOT, workingDir) },
+    { cwd: join(Config.appRoot, workingDir) },
     options
   );
 };

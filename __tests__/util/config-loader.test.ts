@@ -1,8 +1,10 @@
 import { resolve } from 'path';
 
-jest.mock('../../src/util/paths');
-
 import * as configLoader from '../../src/util/config-loader';
+
+const options = {
+  cwd: 'example/consumer/'
+};
 
 describe('config-loader', () => {
   describe('.getFiles()', () => {
@@ -13,7 +15,7 @@ describe('config-loader', () => {
         '*.json',
         'rc',
       ];
-      const files = configLoader.getFiles(prefix, extensions);
+      const files = configLoader.getFiles(prefix, extensions, options);
 
       expect(files).toEqual(expect.arrayContaining([
         '.proco.js',
@@ -28,7 +30,7 @@ describe('config-loader', () => {
 
   describe('.getPkgConfig()', () => {
     it('returns config', () => {
-      const pkgConfig = configLoader.getPkgConfig();
+      const pkgConfig = configLoader.getPkgConfig(options);
       expect(pkgConfig).toEqual({
         compiledContractsPath: 'contracts/json/'
       });
@@ -43,8 +45,8 @@ describe('config-loader', () => {
         '*.json',
         'rc',
       ];
-      const files = configLoader.getFiles(prefix, extensions);
-      const pkgConfig = configLoader.loadFiles(files);
+      const files = configLoader.getFiles(prefix, extensions, options);
+      const pkgConfig = configLoader.loadFiles(files, options);
       expect(pkgConfig).toEqual([
         {}, {}, {}, {}, {
           contractsRoot: 'contracts/'
@@ -53,8 +55,10 @@ describe('config-loader', () => {
     });
   });
 
-  it('returns project config', () => {
-    expect(configLoader.load()).toEqual({
+  it('loads configs from project files', () => {
+    const config = configLoader.load(options.cwd);
+
+    expect(config).toEqual({
       contractsRoot: 'contracts/',
       compiledContractsPath: 'contracts/json/'
     });

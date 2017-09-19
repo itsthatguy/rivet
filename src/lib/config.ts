@@ -1,6 +1,9 @@
 import * as configLoader from '../util/config-loader';
+import * as fs from 'fs';
+export const APP_ROOT = fs.realpathSync(process.cwd());
 
 interface IConfig {
+  appRoot: string;
   contractsRoot: string;
   contractsPath: string;
   compiledContractsRoot: string;
@@ -8,6 +11,7 @@ interface IConfig {
 }
 
 const configDefaults: IConfig = {
+  appRoot: APP_ROOT,
   contractsRoot: 'contracts/',
   contractsPath: '**/*.contract.js',
   compiledContractsRoot: 'contracts/json/',
@@ -18,7 +22,7 @@ const configDefaults: IConfig = {
   ],
 };
 
-const userConfig = configLoader.load();
+const userConfig = configLoader.load(APP_ROOT);
 
 export const Config = {
   ...configDefaults,

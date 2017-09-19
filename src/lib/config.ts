@@ -23,7 +23,7 @@ const configDefaults: IConfig = {
 
 const userConfig = configLoader.load(configDefaults.appRoot);
 
-export const Config = {
+export const CONFIG = {
   ...configDefaults,
   ...userConfig,
 };

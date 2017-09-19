@@ -6,10 +6,10 @@ import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
 import { log, warn, error } from './log';
 import { IHandlerArgs } from './handlers';
-import { Config } from './config';
+import { CONFIG } from './config';
 
 const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
-  const dirpath = resolve(Config.contractsRoot, dir);
+  const dirpath = resolve(CONFIG.contractsRoot, dir);
   fs.ensureDirSync(dirpath);
 
   const outputPath = resolve(dirpath, filename);
@@ -44,7 +44,7 @@ const globOptions = (ignore: string[] | boolean[] = [], out: string, workingDir:
   : { ignore };
 
   return Object.assign({},
-    { cwd: join(Config.appRoot, workingDir) },
+    { cwd: join(CONFIG.appRoot, workingDir) },
     options
   );
 };
@@ -53,7 +53,7 @@ export const compileHandler = (argv: IHandlerArgs): any[] => {
   log('Compiling contracts to JSON');
   const { clean, out, src: argSrc, ignore, cwd } = argv;
   const pathGlob = argSrc || '**/*.contract.js';
-  const workingDir = cwd || Config.contractsRoot;
+  const workingDir = cwd || CONFIG.contractsRoot;
 
   if (clean) { attemptClean(out); }
 

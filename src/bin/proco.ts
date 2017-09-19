@@ -2,7 +2,7 @@
 import * as yargs from 'yargs';
 
 import { textHelpers } from '../lib/log';
-import { Config } from '../lib/config';
+import { CONFIG } from '../lib/config';
 
 import {
   linkHandler,
@@ -50,7 +50,7 @@ const compileOptions: yargs.CommandModule = {
     },
     out: {
       aliases: ['outputDir', 'output'],
-      default: Config.compiledContractsRoot,
+      default: CONFIG.compiledContractsRoot,
     }
   },
   handler: compileHandler,
@@ -83,7 +83,7 @@ yargs
   command: 'config',
   describe: 'Displays current configuration options',
   handler: (argv) => {
-    console.log(Config);
+    console.log(CONFIG);
   }
 })
 .help()

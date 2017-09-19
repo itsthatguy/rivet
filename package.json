@@ -5,14 +5,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "$(npm bin)/jest",
-    "prepublishOnly": "npm run compile",
-    "watch": "npm run compile -- --watch",
+    "test": "npm run build && $(npm bin)/jest",
+    "prepublishOnly": "npm run build",
+    "watch": "npm run build -- --watch",
     "clean": "rm -rf ./dist",
-    "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
+    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/proco dist/bin/",
+    "build:watch": "npm run watch"
   },
   "bin": {
-    "proco": "./dist/bin/proco.js"
+    "proco": "./dist/bin/proco"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",

@@ -1,4 +1,4 @@
-import { compileHandler } from '../../src/lib/compile';
+import { compileHandler } from '../../src/bin/compile';
 import * as fs from 'fs-extra';
 
 jest.mock('fs-extra');

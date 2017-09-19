@@ -3,7 +3,7 @@ jest.mock('child_process');
 import {
   publishHandler,
   versionHandler,
-} from '../../src/lib/handlers';
+} from '../../src/bin/handlers';
 
 describe('versionHandler', () => {
   afterEach(console.resetLog);

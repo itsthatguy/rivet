@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 
-import * as configLoader from '../../src/util/config-loader';
+import * as configLoader from '../../src/util/configLoader';
 
 const options = {
   cwd: 'example/consumer/'
 };
 
-describe('config-loader', () => {
+describe('configLoader', () => {
   describe('.getFiles()', () => {
     it('return names of matching files', () => {
       const prefix = 'proco';

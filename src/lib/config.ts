@@ -1,4 +1,4 @@
-import * as configLoader from '../util/config-loader';
+import * as configLoader from '../util/configLoader';
 import * as fs from 'fs';
 
 interface IConfig {

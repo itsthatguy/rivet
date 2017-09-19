@@ -4,8 +4,12 @@ const originalConsole = console;
 
 interface IFauxLogger {
   out: string;
-  resetLog
+  log(any): void;
+  warn(any): void;
+  error(any): void;
+  resetLog(): void;
 }
+
 class FauxLogger {
   public out: string = '';
 

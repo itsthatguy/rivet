@@ -1,6 +1,3 @@
-// TODO: make this configurable
-const DEFAULT_BASE_DIR = '__contracts__/';
-
 import { CommandModule } from 'yargs';
 import * as glob from 'glob';
 import { join, parse, resolve } from 'path';
@@ -8,10 +5,10 @@ import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
 import { log, warn, error } from './log';
 import { IHandlerArgs } from './handlers';
+import { CONFIG } from './config';
 
 const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
-  const projectRoot = resolve(process.cwd());
-  const dirpath = resolve(projectRoot, dir);
+  const dirpath = resolve(CONFIG.compiledContractsRoot, dir);
   fs.ensureDirSync(dirpath);
 
   const outputPath = resolve(dirpath, filename);
@@ -35,7 +32,7 @@ const attemptClean = (clean: string): void => {
   }
 };
 
-const globOptions = (ignore: string[] | boolean[] = [], out: string): glob.IOptions => {
+const globOptions = (ignore: string[] | boolean[] = [], out: string, cwd: string): glob.IOptions => {
   const options: glob.IOptions = (ignore.length > 0 && !ignore[0])
   ? {
       ignore: [
@@ -45,30 +42,32 @@ const globOptions = (ignore: string[] | boolean[] = [], out: string): glob.IOpti
     }
   : { ignore };
 
-  return options;
+  return Object.assign({},
+    { cwd: join(CONFIG.appRoot, cwd) },
+    options
+  );
 };
 
 export const compileHandler = (argv: IHandlerArgs): any[] => {
   log('Compiling contracts to JSON');
-  const { clean, out, src: argSrc, ignore } = argv;
+  const { clean, out, src: argSrc, ignore, cwd } = argv;
   const pathGlob = argSrc || '**/*.contract.js';
 
   if (clean) { attemptClean(out); }
 
-  const options = globOptions(ignore, out);
+  const options = globOptions(ignore, out, cwd);
 
   const paths = glob.sync(pathGlob, options);
 
   return paths.reduce((result: any[], file: string): any[] => {
     const { dir, name } = parse(file);
 
-    // clear cache to rebuild the JSON
-    const contractPath = resolve(process.cwd(), file);
+    // clear cache to rebuild the JSON for watch
+    const contractPath = resolve(cwd, file);
     delete require.cache[require.resolve(contractPath)];
     const data = require(contractPath);
 
-    const targetDir = dir.replace(DEFAULT_BASE_DIR, '');
-    const object = saveToFile(data, `${name}.json`, join(out, targetDir));
+    const object = saveToFile(data, `${name}.json`, dir);
     result.push(object);
 
     return result;

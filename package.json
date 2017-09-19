@@ -1,11 +1,13 @@
 {
   "name": "proco",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "$(npm bin)/jest",
     "prepublishOnly": "npm run compile",
+    "watch": "npm run compile -- --watch",
     "clean": "rm -rf ./dist",
     "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },
@@ -40,13 +42,17 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts",
-      "!src/bin/**/*.ts",
-      "!src/lib/runCommand.ts"
+      "!dist/",
+      "!src/bin/**/*.ts"
     ],
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "dist/",
+      "node_modules/"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

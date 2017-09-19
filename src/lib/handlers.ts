@@ -2,12 +2,14 @@ import { CommandModule } from 'yargs';
 import runCommand from './runCommand';
 import { log } from './log';
 import { compileHandler } from './compile';
+import { CONFIG } from './config';
 
 export interface IHandlerArgs {
   version?: string | boolean;
   clean?: string;
   out?: string;
   src?: string;
+  cwd?: string;
   pkg?: string;
   ignore?: string[] | boolean[];
 }
@@ -35,9 +37,10 @@ export const linkHandler = (argv: IHandlerArgs): void => {
 export const watchHandler = (argv: IHandlerArgs): void => {
   log('Watching for changes...');
   const chokidar = require('chokidar');
+  const { cwd, ignore, out } = argv;
 
   const compile = (path: string): any[] => {
-    return compileHandler({ src: path, ignore: [false], out: '__contracts__/contracts/' });
+    return compileHandler({ src: path, ignore, cwd, out });
   };
 
   chokidar.watch(argv.src, {ignored: '**/node_modules/**/*'})

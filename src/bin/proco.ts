@@ -2,6 +2,7 @@
 import * as yargs from 'yargs';
 
 import { textHelpers } from '../lib/log';
+import { CONFIG } from '../lib/config';
 
 import {
   linkHandler,
@@ -42,13 +43,16 @@ const compileOptions: yargs.CommandModule = {
       default: false,
       aliases: ['input', 'inputDir', 'in'],
     },
+    cwd: {
+      default: CONFIG.contractsRoot,
+    },
     ignore: {
       default: false,
       type: 'array'
     },
     out: {
       aliases: ['outputDir', 'output'],
-      default: '__contracts__/contracts/',
+      default: CONFIG.compiledContractsRoot,
     }
   },
   handler: compileHandler,
@@ -59,9 +63,20 @@ const watchOptions: yargs.CommandModule = {
   aliases: ['w'],
   builder: {
     src: {
-      default: '__contracts__/**/*.contract.js',
+      default: CONFIG.contractsPath,
       aliases: ['input', 'inputDir', 'in'],
     },
+    cwd: {
+      default: CONFIG.contractsRoot,
+    },
+    ignore: {
+      default: false,
+      type: 'array'
+    },
+    out: {
+      aliases: ['outputDir', 'output'],
+      default: CONFIG.compiledContractsRoot,
+    }
   },
   describe: 'Watch and compile changes to contracts',
   handler: watchHandler,
@@ -77,6 +92,13 @@ yargs
 .command(linkOptions)
 .command(compileOptions)
 .command(watchOptions)
+.command({
+  command: 'config',
+  describe: 'Displays current configuration options',
+  handler: (argv) => {
+    console.log(CONFIG);
+  }
+})
 .help()
 .check((argv: any): boolean => {
   if (argv._.length === 0) { yargs.showHelp(); }

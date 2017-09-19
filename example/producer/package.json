@@ -1,0 +1,19 @@
+{
+  "name": "proco-example-producer",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "test": "$(npm bin)/jest"
+  },
+  "devDependencies": {
+    "proco": "^0.1.6",
+    "jest": "^20.0.4",
+    "jest-json-schema": "^1.2.0",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}

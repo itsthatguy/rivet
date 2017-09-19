@@ -5,8 +5,5 @@ steps:
       - (cd example/consumer/ && npm install)
       - (cd example/producer/ && npm install)
 
-  - label: ":node: Build"
-    command: npm run build
-
   - label: ":jest: Run Tests"
     command: npm test

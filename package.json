@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "$(npm bin)/jest",
+    "test": "npm run build && $(npm bin)/jest",
     "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf ./dist",
@@ -31,7 +31,6 @@
     "@types/node": "^8.0.28",
     "@types/yargs": "^8.0.2",
     "jest": "^20.0.4",
-    "proco": "file:./",
     "strip-color": "^0.1.0",
     "ts-jest": "^21.0.0",
     "tslint": "^5.7.0",

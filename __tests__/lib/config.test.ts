@@ -1,4 +1,4 @@
-import { CONFIG } from '../../src/lib/config';
+import { CONFIG } from '../../src/bin/config';
 
 describe('config', () => {
   it('returns project config', () => {

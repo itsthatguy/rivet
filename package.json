@@ -12,7 +12,7 @@
     "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
   },
   "bin": {
-    "proco": "./dist/bin/proco.js"
+    "proco": "./dist/bin/proco"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",

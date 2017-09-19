@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 
-import { textHelpers } from '../lib/log';
-import { CONFIG } from '../lib/config';
+import { textHelpers } from './log';
+import { CONFIG } from './config';
 
 import {
   linkHandler,
@@ -10,7 +10,7 @@ import {
   versionHandler,
   watchHandler,
   compileHandler,
-} from '../lib/handlers';
+} from './handlers';
 
 const versionOptions: yargs.CommandModule = {
   command: 'version <version|major|minor|patch>',

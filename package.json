@@ -9,7 +9,7 @@
     "prepublishOnly": "npm run compile",
     "watch": "npm run compile -- --watch",
     "clean": "rm -rf ./dist",
-    "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration"
+    "compile": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/proco dist/bin/"
   },
   "bin": {
     "proco": "./dist/bin/proco"

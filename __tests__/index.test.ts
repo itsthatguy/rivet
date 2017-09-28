@@ -1,8 +1,9 @@
 import {
+  Config,
   load,
   generate,
+  generateSync,
   types,
-  Config,
 } from '../src';
 import { configDefaults } from '../src/bin/config';
 
@@ -52,6 +53,26 @@ describe('module', () => {
       };
 
       const response: any = await generate(schema);
+      expect(typeof response.name).toBe('string');
+    });
+  });
+
+  describe('.generateSync()', () => {
+    it('generates fake data from a file', () => {
+      const response: any = generateSync('fixtures/schema.fixture.json');
+      expect(typeof response.data.name).toBe('string');
+    });
+
+    it('generates fake data from a schema object', () => {
+      const schema = {
+        title: 'Schema Object',
+        required: [ 'name' ],
+        properties: {
+          name: { type: 'string' }
+        }
+      };
+
+      const response: any = generateSync(schema);
       expect(typeof response.name).toBe('string');
     })
   });

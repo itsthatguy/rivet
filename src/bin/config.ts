@@ -1,29 +1,47 @@
 import * as configLoader from '../util/configLoader';
 import * as fs from 'fs';
 
-interface IConfig {
-  appRoot: string;
-  contractsRoot: string;
-  contractsPath: string;
-  compiledContractsRoot: string;
-  producersContractsRoots: any[];
+export interface IAlias {
+  [alias: string]: string;
 }
 
-const configDefaults: IConfig = {
+export interface IConfig {
+  appRoot?: string;
+  contractsRoot?: string;
+  contractsPath?: string;
+  compiledContractsRoot?: string;
+  aliases?: IAlias;
+  set?(any): IConfig;
+}
+
+export const configDefaults: IConfig = {
   appRoot: fs.realpathSync(process.cwd()),
   contractsRoot: 'contracts/',
   contractsPath: '**/*.contract.js',
   compiledContractsRoot: 'contracts/json/',
-  producersContractsRoots: [
-    // example:
-    // 'node_modules/producer-one-contracts/contracts/',
-    // 'node_modules/producer-two-contracts/contracts/',
-  ],
+  aliases: {}
 };
 
 const userConfig = configLoader.load(configDefaults.appRoot);
 
-export const CONFIG = {
-  ...configDefaults,
-  ...userConfig,
-};
+export class Config implements IConfig {
+  public appRoot;
+  public contractsRoot;
+  public contractsPath;
+  public compiledContractsRoot;
+  public aliases;
+
+  constructor(options: IConfig = {}) {
+    Object.assign(this, {
+      ...configDefaults,
+      ...userConfig,
+      ...options,
+    });
+  }
+
+  public set(options) {
+    return Object.assign(this, options);
+  }
+}
+
+export default new Config();

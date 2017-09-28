@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as glob from 'glob';
 
-const PREFIX = 'proco';
+const PREFIX = 'apiContracts';
 
 const POSSIBLE_EXTENSIONS = [
   '*.ts',
@@ -12,7 +12,7 @@ const POSSIBLE_EXTENSIONS = [
 
 export const getFiles = (prefix: string, extensions: string[], options: any): string[] => {
   const globOptions = {
-    cwd: options.cwd,
+    cwd: path.resolve(options.cwd),
     dot: true,
     ignore: [ '**/node_modules/**/*' ],
   };
@@ -28,7 +28,7 @@ export const getFiles = (prefix: string, extensions: string[], options: any): st
 export const getPkgConfig = (options: any): any => {
   const fullFilePath = path.resolve(options.cwd, 'package.json');
   delete require.cache[fullFilePath];
-  return require(fullFilePath).proco || {};
+  return require(fullFilePath).apiContracts || {};
 };
 
 export const loadFiles = (paths: string[], options: any): any[] => {

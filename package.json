@@ -1,5 +1,5 @@
 {
-  "name": "proco",
+  "name": "api-contracts",
   "version": "0.1.7",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
@@ -9,11 +9,11 @@
     "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/proco dist/bin/",
+    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/api-contracts dist/bin/",
     "build:watch": "npm run watch"
   },
   "bin": {
-    "proco": "./dist/bin/proco"
+    "api-contracts": "./dist/bin/api-contracts"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",

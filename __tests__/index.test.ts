@@ -17,7 +17,7 @@ describe('module', () => {
     Config.set(configDefaults);
   });
 
-  describe('.loadSchema()', () => {
+  describe('.load()', () => {
     it('loads from a file path', () => {
       const schema: any = load('fixtures/schema.fixture.json');
       expect(schema).toMatchObject({
@@ -38,7 +38,7 @@ describe('module', () => {
 
   describe('.generate()', () => {
     it('generates fake data from a file', async () => {
-      const response: any = generate(fixtures/schema.fixture.json');
+      const response: any = await generate('fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
     });
 

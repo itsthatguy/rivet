@@ -1,17 +1,36 @@
 import { join } from 'path';
 import * as types from './types';
-import { resolve } from 'json-schema-faker';
+import * as jsf from 'json-schema-faker';
+import Config from './bin/config';
+import { resolve } from 'path';
 
 export const loadSchema = (schemaPath: string): any => {
-  const schema = require(schemaPath);
+  const absolutePath = getFilePath(schemaPath);
+  const schema = require(absolutePath);
   return schema;
+};
+
+const getFilePath = (schemaPath: string): string => {
+  const regex = /^(.+)\//;
+  const aliasKey = schemaPath.match(regex)[1];
+  const relativePath = schemaPath.replace(regex, '');
+  const pathAlias = Config.aliases[aliasKey] || Config.contractsRoot;
+  const absolutePath = resolve(Config.appRoot, pathAlias, relativePath);
+  return absolutePath;
 };
 
 export const generateResponseFromSchema = (schemaPath: string | {}): Promise<any> => {
   const schema = (typeof schemaPath === 'string')
     ? loadSchema(schemaPath)
     : schemaPath;
-  return resolve(schema);
+  return jsf.resolve(schema);
 };
 
-export { types };
+export const generateSync = (schemaPath: string | {}): any => {
+  const schema = (typeof schemaPath === 'string')
+    ? loadSchema(schemaPath)
+    : schemaPath;
+  return jsf(schema);
+};
+
+export { types, Config };

@@ -1,4 +1,3 @@
-
 module.exports = {
   title: 'Nested Contract',
   required: ['name'],

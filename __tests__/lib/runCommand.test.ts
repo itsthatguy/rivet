@@ -1,6 +1,6 @@
 import runCommand from '../../src/bin/runCommand';
 import * as path from 'path';
-import { CONFIG } from '../../src/bin/config';
+import Config from '../../src/bin/config';
 
 jest.mock('child_process');
 
@@ -33,7 +33,7 @@ describe('runCommand', () => {
     expect(result).toEqual({
       command: 'dude',
       options: {
-        cwd: path.resolve(CONFIG.contractsRoot),
+        cwd: path.resolve(Config.contractsRoot),
         env: {
           NODE_ENV: 'test',
           PATH: process.env.PATH,

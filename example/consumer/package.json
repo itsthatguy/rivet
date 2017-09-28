@@ -1,19 +1,19 @@
 {
-  "name": "proco-example-consumer",
+  "name": "api-contracts-example-consumer",
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "config": "$(npm bin)/proco config",
+    "config": "$(npm bin)/api-contracts config",
     "test": "$(npm bin)/jest"
   },
   "devDependencies": {
     "jest": "^20.0.4",
     "jest-json-schema": "^1.2.0",
-    "proco": "^0.1.6"
+    "api-contracts": "^0.2.0"
   },
-  "proco": {
+  "apiContracts": {
     "compiledContractsPath": "contracts/json/"
   }
 }

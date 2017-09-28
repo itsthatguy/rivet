@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 
-import { textHelpers } from './log';
+import { log, textHelpers } from './log';
 import Config from './config';
 
 import {
@@ -96,7 +96,7 @@ yargs
   command: 'config',
   describe: 'Displays current configuration options',
   handler: (argv) => {
-    console.log(Config);
+    process.stdout.write(require('util').inspect(Config, false, null));
   }
 })
 .help()

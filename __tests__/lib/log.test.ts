@@ -9,16 +9,16 @@ describe('log', () => {
 
   it('.log()', () => {
     log('info', 'dude');
-    expect(process.out).toEqual('proco info dude\n');
+    expect(process.out).toEqual('api-contracts info dude\n');
   });
 
   it('.warn()', () => {
     warn('dude');
-    expect(process.out).toEqual('proco warn dude\n');
+    expect(process.out).toEqual('api-contracts warn dude\n');
   });
 
   it('.error()', () => {
     log('error', 'dude');
-    expect(process.out).toEqual('proco error dude\n');
+    expect(process.out).toEqual('api-contracts error dude\n');
   });
 });

@@ -9,7 +9,7 @@ const options = {
 describe('configLoader', () => {
   describe('.getFiles()', () => {
     it('return names of matching files', () => {
-      const prefix = 'proco';
+      const prefix = 'apiContracts';
       const extensions = [
         '*.js',
         '*.json',
@@ -18,11 +18,12 @@ describe('configLoader', () => {
       const files = configLoader.getFiles(prefix, extensions, options);
 
       expect(files).toEqual(expect.arrayContaining([
-        '.proco.js',
-        '.procorc.js',
-        'procorc.js',
-        '.procorc',
-        'procorc'
+        '.apiContracts.js',
+        '.apiContractsrc.js',
+        '.apiContractsrc',
+        'apiContracts.js',
+        'apiContractsrc.js',
+        'apiContractsrc'
       ]));
 
     });
@@ -39,7 +40,7 @@ describe('configLoader', () => {
 
   describe('.loadFiles()', () => {
     it('returns contents of config files', () => {
-      const prefix = 'proco';
+      const prefix = 'apiContracts';
       const extensions = [
         '*.js',
         '*.json',
@@ -48,7 +49,7 @@ describe('configLoader', () => {
       const files = configLoader.getFiles(prefix, extensions, options);
       const pkgConfig = configLoader.loadFiles(files, options);
       expect(pkgConfig).toEqual([
-        {}, {}, {}, {}, {
+        {}, {}, {}, {}, {}, {
           contractsRoot: 'contracts/'
         }
       ]);

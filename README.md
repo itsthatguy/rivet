@@ -1,141 +1,49 @@
-# proco
+# api-contracts
 
-This package ships with 2 primary functions, categorized as such:
-1. [Helpers](#helpers)
-2. [CLI](#cli)
+## Table of contents
+- [Introduction](#introduction)
+  - [The Problem](#the-problem)
+  - [How it Works](#how-it-works)
+  - [For example](#for-example)
+- [Getting Started](#getting-started)
+  - [Writing a Contract](#introduction)
+  - [Writing Tests](#writing-tests)
+  - [Publishing Contracts](publishing-contracts)
+  - [Importing Contracts](importing-contracts)
 
-## Helpers
+## Introduction
 
-There are 2 types of helpers in this package.
-### Functions
+We'd like to introduce a strategy for keeping your applications [communication layer, apis, etc..] in sync. The pattern we'll be talking about is based on [Consumer Driven Contracts](https://thoughtworks.github.io/pacto/patterns/cdc/).
 
-#### .generateResponseFromSchema(rootSchemaPath, schemaPath) [async]
+The primary actors involved are the consumer and the producer:
 
-Generates a fake object, based on the schema (contract), that can be use to `nock` server responses.
+* _Consumer_  — defines and publishes a contract using
+[JSON Schema](http://json-schema.org/)
+* _Producer_ — imports and satisfies a contract
 
-* **rootSchemaPath:** The path to where your contracts are stored.
-* **schemaPath:** The path, from the _rootSchemaPath_ to where the schema file is located.
+## The Problem
 
-Example:
+Everyone today has responsibility over applications that consume multiple APIs. Trouble arises when you'd like to make a change to an API without breaking other consumers.
 
-```js
-const nock = require('nock');
-const { generateResponseFromSchema } = require('api-contracts');
-const producerContractPath = '../__contracts__';
+People use tools like API Blueprint or slacker or tests within the API's code itself to specify the requirements for an API. However, these tools and strategies do not account for the consuming applications that may break. You can change a test with the APIs codebase and not know whether you've broken any given consumer.
 
-describe('Example Test', () => {
-  it('loads the contract', async () => {
-    const response = await generateResponseFromSchema(producerContractPath, 'example.contract.json');
-    const expectedResponse = { isAwesome: true };
+Our strategy reverses this paradigm. When we allow the consumer to specify the requirements for an API (or *producer*), we can make changes to an producer and know immediately which consumers are compatible with that change. ~~Additionally, we know when a version of an API can be retired, because we know when there are no more consumers of that API.~~
 
-    nock('http://example.com')
-    .get('/example')
-    .reply(200, response);
+## How it Works
 
-    const request = await makeARequest();
-    expect(request.body).toEqual(expectedResponse);
-  });
-});
-```
+The _consumer_ maintains the contract for a given _producer_.
 
-#### .loadSchema(rootSchemaPath, schemaPath)
+1. The _producer_ requires the contract, at a very specific version, from the _consumer_ from an npm package.
+2. The _producer_ tests its API against the contract from the _consumer_.
+3. If the contract tests fail, it means the contracts and the _consumer_ application need to be updated to ensure that the _consumer_ continues to work as expected.
 
-Loads a schema file to use for validating a payload.
+![](https://cdn-images-1.medium.com/max/1600/1*EW21Eo9rnrHmOOBOXIFjaQ.png)
 
-* **rootSchemaPath:** The path to where your contracts are stored.
-* **schemaPath:** The path, from the _rootSchemaPath_ to where the schema file is located.
+### For example
 
-Example:
+Your client is a _consumer_ app that defines the contract for its _producer_ app: The API server.
 
-```js
-const nock = require('nock');
-const { matchers } = require('jest-json-schema');
-const {
-  generateResponseFromSchema,
-  loadSchema,
-} = require('api-contracts');
-const producerContractPath = '../__contracts__';
-const consumerContractPath = '@org/consumer-contracts/contracts';
+#### The client consumes the API
 
-expect.extend(matchers);
+Changes to server *(or producer)* responses can potentially break the client *(or consumer)* without API developers knowing about the breaking changes. To prevent this, the *consumer* publishes a contract that it expects the API to satisfy. When the *producer* runs tests it verifies its responses will satisfy the *consumer’s* needs. If the responses don’t satisfy the *consumer's* needs, we know that the *consumer* won’t work as expected, after the changes are published.
 
-describe('Example Test', () => {
-    it('Returns the correct payload', async () => {
-      const routeRequest = {
-        params: { accountNumber: 1 },
-      };
-      const response = await generateResponseFromSchema(producerContractPath, '/Example/get.contract.json');
-
-      nock('http://example.com')
-      .get('/example/1')
-      .reply(200, response);
-
-      const schema = loadSchema(consumerContractPath, '/Example/get.contract.json');
-
-      const request = await getExample(routeRequest);
-      expect(request.body).toMatchSchema(schema);
-    });
-  });
-```
-
-### json-schema types, and properties
-
-Json-schema types, and properties exist to make defining schemas for your application much easier, and less redundant. To do this, we take commonly used elements in a schema, define them here, then in your application schemas you can simply do the following:
-
-```js
-const { types, properties } = require('api-contracts');
-
-
-module.exports = {
-  title: 'Example',
-  type: 'object',
-  required: ['email', 'links'],
-
-  properties: {
-    email: types.email,
-    links: properties.links,
-  }
-};
-```
-
-To use json-schema types, or properties in your . You will need to require them
-
-#### types
-
-Types live in the `./types` folder. These are simple definition of a single property *type*. For example, here is the code used for the `uri` type:
-
-```json
-{
-  "id": "types.uri",
-  "type": "string",
-  "pattern": "[0-9a-fA-F]{8,20}"
-}
-```
-
-#### properties
-
-Properties live in the `./properties` folder. These are more complex definitions that typically will include children, and might even import various `types`. Here is what the `links` property looks like:
-
-```json
-{
-  "id": "properties.links",
-  "type": "object",
-  "required": [ "self" ],
-  "properties": {
-    "self": {
-      "type": "string",
-      "pattern": "^https?:\\/\\/[a-f]{3,10}\\.[a-f]{3}"
-    }
-  }
-}
-```
-
-## CLI
-
-The CLI is used to version bump and publish contracts inside an application. Once this package is installed in your application you can run the commands shown below from the repo's root directoy. If your contracts are stored in the `__contracts__` folder, the CLI will take care of navigating to that folder to publish, and version bump.
-
-Usage:
-```shell
-# To see all available options
-proco --help
-```

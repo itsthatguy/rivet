@@ -1,4 +1,4 @@
-const { types } = require('proco');
+const { types } = require('api-contracts');
 
 module.exports = {
   title: 'Example Contract',

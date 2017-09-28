@@ -1,31 +1,39 @@
+import * as stream from 'stream';
 import * as strip from 'strip-color';
 
-const originalConsole = console;
+function FauxLogger() {
+  let out = '';
 
-interface IFauxLogger {
-  out: string;
-  log(any): void;
-  warn(any): void;
-  error(any): void;
-  resetLog(): void;
+  const write = (stuff) => {
+    out += strip(stuff + '\n');
+  };
+
+  const logger = { write };
+
+  return {
+    get out() { return out; },
+    stdout: logger,
+    stderr: logger,
+
+    resetLog() { out = ''; }
+  };
 }
+const originalProcess = process;
+const fauxLogger = FauxLogger();
 
-class FauxLogger {
-  public out: string = '';
+process = new Proxy(fauxLogger, {
+  get(target, name) {
+  if (!target[name]) {
+      return originalProcess[name];
+    }
+    return fauxLogger[name];
+  },
 
-  public resetLog = (): void => {
-    this.out = '';
+  set(target, name, value) {
+    if (!target[name]) {
+      return originalProcess[name] = value;
+    }
+
+    return target[name] = value;
   }
-
-  public log = (stuff): void => {
-    this.out += strip(stuff + '\n');
-  }
-
-  public warn = (...args): void => this.log(args);
-  public error = (...args): void => this.log(args);
-
-  // for debugging
-  public dog = (...args): void => originalConsole.log(...args);
-}
-
-global.console = new FauxLogger();
+});

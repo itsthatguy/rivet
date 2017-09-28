@@ -1,13 +1,13 @@
 import {
-  loadSchema,
-  generateResponseFromSchema,
+  load,
+  generate,
   types,
 } from '../src';
 
 describe('module', () => {
-  describe('.loadSchema()', () => {
+  describe('.load()', () => {
     it('loads from a file path', () => {
-      const schema: any = loadSchema(__dirname + '/fixtures/schema.fixture.json');
+      const schema: any = load(__dirname + '/fixtures/schema.fixture.json');
       expect(schema).toMatchObject({
         title: 'my schema',
         required: ['data'],
@@ -24,9 +24,9 @@ describe('module', () => {
     });
   });
 
-  describe('.generateResponseFromSchema()', () => {
+  describe('.generate()', () => {
     it('generates fake data from a file', async () => {
-      const response: any = await generateResponseFromSchema(__dirname + '/fixtures/schema.fixture.json');
+      const response: any = await generate(__dirname + '/fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
     });
 
@@ -39,7 +39,7 @@ describe('module', () => {
         }
       };
 
-      const response: any = await generateResponseFromSchema(schema);
+      const response: any = await generate(schema);
       expect(typeof response.name).toBe('string');
     })
   });

@@ -2,14 +2,14 @@ import { join } from 'path';
 import * as types from './types';
 import { resolve } from 'json-schema-faker';
 
-export const loadSchema = (schemaPath: string): any => {
+export const load = (schemaPath: string): any => {
   const schema = require(schemaPath);
   return schema;
 };
 
-export const generateResponseFromSchema = (schemaPath: string | {}): Promise<any> => {
+export const generate = (schemaPath: string | {}): Promise<any> => {
   const schema = (typeof schemaPath === 'string')
-    ? loadSchema(schemaPath)
+    ? load(schemaPath)
     : schemaPath;
   return resolve(schema);
 };

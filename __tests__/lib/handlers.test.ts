@@ -6,7 +6,7 @@ import {
 } from '../../src/bin/handlers';
 
 describe('versionHandler', () => {
-  afterEach(console.resetLog);
+  afterEach(process.resetLog);
 
   it('does not try to bump the version if none is specified', () => {
     const fn = versionHandler({ version: false });
@@ -15,13 +15,13 @@ describe('versionHandler', () => {
 
   it('bumps the version if one is specified', () => {
     const fn = versionHandler({ version: 'patch' });
-    expect(console.out).toEqual('proco info Bumping package version\n' +
+    expect(process.out).toEqual('proco info Bumping package version\n' +
                                 'proco cmd npm version patch --no-git-tag-version\n');
   });
 });
 
 describe('publishHandler', () => {
-  afterEach(console.resetLog);
+  afterEach(process.resetLog);
 
   it('does not try to bump the version if none is specified', () => {
     const fn = publishHandler({ version: false });
@@ -30,7 +30,7 @@ describe('publishHandler', () => {
 
   it('bumps the version if one is specified', () => {
     const fn = publishHandler({ version: 'patch' });
-    expect(console.out).toEqual('proco info Bumping package version\n' +
+    expect(process.out).toEqual('proco info Bumping package version\n' +
                                 'proco cmd npm version patch --no-git-tag-version\n' +
                                 'proco info Publishing package\n' +
                                 'proco cmd npm publish\n');

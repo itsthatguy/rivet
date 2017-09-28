@@ -1,8 +1,9 @@
 import {
-  loadSchema,
-  generateResponseFromSchema,
-  types,
   Config,
+  load,
+  generate,
+  generateSync,
+  types,
 } from '../src';
 import { configDefaults } from '../src/bin/config';
 
@@ -17,9 +18,9 @@ describe('module', () => {
     Config.set(configDefaults);
   });
 
-  describe('.loadSchema()', () => {
+  describe('.load()', () => {
     it('loads from a file path', () => {
-      const schema: any = loadSchema('fixtures/schema.fixture.json');
+      const schema: any = load('fixtures/schema.fixture.json');
       expect(schema).toMatchObject({
         title: 'my schema',
         required: ['data'],
@@ -36,9 +37,9 @@ describe('module', () => {
     });
   });
 
-  describe('.generateResponseFromSchema()', () => {
+  describe('.generate()', () => {
     it('generates fake data from a file', async () => {
-      const response: any = await generateResponseFromSchema('fixtures/schema.fixture.json');
+      const response: any = await generate('fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
     });
 
@@ -51,7 +52,27 @@ describe('module', () => {
         }
       };
 
-      const response: any = await generateResponseFromSchema(schema);
+      const response: any = await generate(schema);
+      expect(typeof response.name).toBe('string');
+    });
+  });
+
+  describe('.generateSync()', () => {
+    it('generates fake data from a file', () => {
+      const response: any = generateSync('fixtures/schema.fixture.json');
+      expect(typeof response.data.name).toBe('string');
+    });
+
+    it('generates fake data from a schema object', () => {
+      const schema = {
+        title: 'Schema Object',
+        required: [ 'name' ],
+        properties: {
+          name: { type: 'string' }
+        }
+      };
+
+      const response: any = generateSync(schema);
       expect(typeof response.name).toBe('string');
     })
   });

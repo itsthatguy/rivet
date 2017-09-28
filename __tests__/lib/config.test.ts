@@ -1,4 +1,4 @@
-import { loadSchema, Config } from '../../src';
+import { load, Config } from '../../src';
 import { configDefaults } from '../../src/bin/config';
 
 describe('config', () => {
@@ -31,7 +31,7 @@ describe('config', () => {
       }
     });
 
-    const contract = loadSchema('sub/nested.contract');
+    const contract = load('sub/nested.contract');
     expect(contract).toEqual({
       title: 'Nested Contract',
       required: ['name'],

@@ -1,6 +1,6 @@
 import { log } from './log';
 import * as path from 'path';
-import { CONFIG } from './config';
+import Config from './config';
 
 export interface IRunCommandOptions {
   NODE_ENV?: string;
@@ -13,7 +13,7 @@ const runCommand = (command: string, options?: IRunCommandOptions): void => {
   const execSync = require('child_process').execSync;
   const defaultOptions = {
     NODE_ENV: process.env.NODE_ENV,
-    cwd: path.resolve(CONFIG.contractsRoot),
+    cwd: path.resolve(Config.contractsRoot),
     PATH: process.env.PATH,
     SHELL: process.env.SHELL || '/usr/bin/bash'
   };

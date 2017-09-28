@@ -5,10 +5,11 @@ import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
 import { log, warn, error } from './log';
 import { IHandlerArgs } from './handlers';
-import { CONFIG } from './config';
+
+import Config from './config';
 
 const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
-  const dirpath = resolve(CONFIG.compiledContractsRoot, dir);
+  const dirpath = resolve(Config.compiledContractsRoot, dir);
   fs.ensureDirSync(dirpath);
 
   const outputPath = resolve(dirpath, filename);
@@ -43,7 +44,7 @@ const globOptions = (ignore: string[] | boolean[] = [], out: string, cwd: string
   : { ignore };
 
   return Object.assign({},
-    { cwd: join(CONFIG.appRoot, cwd) },
+    { cwd: join(Config.appRoot, cwd) },
     options
   );
 };

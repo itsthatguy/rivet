@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs';
 import runCommand from './runCommand';
 import { log } from './log';
 import { compileHandler } from './compile';
-import { CONFIG } from './config';
+import Config from './config';
 
 export interface IHandlerArgs {
   version?: string | boolean;

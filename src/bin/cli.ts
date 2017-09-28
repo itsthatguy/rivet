@@ -2,7 +2,7 @@
 import * as yargs from 'yargs';
 
 import { textHelpers } from './log';
-import { CONFIG } from './config';
+import Config from './config';
 
 import {
   linkHandler,
@@ -44,7 +44,7 @@ const compileOptions: yargs.CommandModule = {
       aliases: ['input', 'inputDir', 'in'],
     },
     cwd: {
-      default: CONFIG.contractsRoot,
+      default: Config.contractsRoot,
     },
     ignore: {
       default: false,
@@ -52,7 +52,7 @@ const compileOptions: yargs.CommandModule = {
     },
     out: {
       aliases: ['outputDir', 'output'],
-      default: CONFIG.compiledContractsRoot,
+      default: Config.compiledContractsRoot,
     }
   },
   handler: compileHandler,
@@ -63,11 +63,11 @@ const watchOptions: yargs.CommandModule = {
   aliases: ['w'],
   builder: {
     src: {
-      default: CONFIG.contractsPath,
+      default: Config.contractsPath,
       aliases: ['input', 'inputDir', 'in'],
     },
     cwd: {
-      default: CONFIG.contractsRoot,
+      default: Config.contractsRoot,
     },
     ignore: {
       default: false,
@@ -75,7 +75,7 @@ const watchOptions: yargs.CommandModule = {
     },
     out: {
       aliases: ['outputDir', 'output'],
-      default: CONFIG.compiledContractsRoot,
+      default: Config.compiledContractsRoot,
     }
   },
   describe: 'Watch and compile changes to contracts',
@@ -96,7 +96,7 @@ yargs
   command: 'config',
   describe: 'Displays current configuration options',
   handler: (argv) => {
-    console.log(CONFIG);
+    console.log(Config);
   }
 })
 .help()

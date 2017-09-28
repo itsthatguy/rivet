@@ -2,12 +2,24 @@ import {
   load,
   generate,
   types,
+  Config,
 } from '../src';
+import { configDefaults } from '../src/bin/config';
+
+Config.set({
+  aliases: {
+    fixtures: '__tests__/fixtures/',
+  }
+});
 
 describe('module', () => {
-  describe('.load()', () => {
+  afterAll(() => {
+    Config.set(configDefaults);
+  });
+
+  describe('.loadSchema()', () => {
     it('loads from a file path', () => {
-      const schema: any = load(__dirname + '/fixtures/schema.fixture.json');
+      const schema: any = load('fixtures/schema.fixture.json');
       expect(schema).toMatchObject({
         title: 'my schema',
         required: ['data'],
@@ -26,7 +38,7 @@ describe('module', () => {
 
   describe('.generate()', () => {
     it('generates fake data from a file', async () => {
-      const response: any = await generate(__dirname + '/fixtures/schema.fixture.json');
+      const response: any = generate(fixtures/schema.fixture.json');
       expect(typeof response.data.name).toBe('string');
     });
 

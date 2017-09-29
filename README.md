@@ -1,4 +1,4 @@
-# api-contracts
+# rivet
 
 ## Table of contents
 - [Introduction](#introduction)

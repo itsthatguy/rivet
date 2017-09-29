@@ -1,4 +1,4 @@
-const { types } = require('api-contracts');
+const { types } = require('@itg/rivet');
 
 module.exports = {
   title: 'Example Contract',

@@ -9,7 +9,7 @@ const options = {
 describe('configLoader', () => {
   describe('.getFiles()', () => {
     it('return names of matching files', () => {
-      const prefix = 'apiContracts';
+      const prefix = 'rivet';
       const extensions = [
         '*.js',
         '*.json',
@@ -18,12 +18,12 @@ describe('configLoader', () => {
       const files = configLoader.getFiles(prefix, extensions, options);
 
       expect(files).toEqual(expect.arrayContaining([
-        '.apiContracts.js',
-        '.apiContractsrc.js',
-        '.apiContractsrc',
-        'apiContracts.js',
-        'apiContractsrc.js',
-        'apiContractsrc'
+        '.rivet.js',
+        '.rivetrc.js',
+        '.rivetrc',
+        'rivet.js',
+        'rivetrc.js',
+        'rivetrc'
       ]));
 
     });
@@ -40,7 +40,7 @@ describe('configLoader', () => {
 
   describe('.loadFiles()', () => {
     it('returns contents of config files', () => {
-      const prefix = 'apiContracts';
+      const prefix = 'rivet';
       const extensions = [
         '*.js',
         '*.json',

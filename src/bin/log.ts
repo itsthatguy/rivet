@@ -1,7 +1,7 @@
 import * as colors from 'colors';
 
 export const textHelpers = {
-  pkg: 'api-contracts',
+  pkg: 'rivet',
   cmd: colors.green('cmd'),
   info: colors.green('info'),
   warn: colors.yellow('warn'),

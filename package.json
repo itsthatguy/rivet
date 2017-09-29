@@ -1,19 +1,22 @@
 {
-  "name": "api-contracts",
+  "name": "@itg/rivet",
   "version": "0.2.0",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "install:consumer": "cd example/consumer; npm install",
+    "install:producer": "cd example/consumer; npm install",
+    "install:all": "npm run install:consumer && npm run install:producer",
     "test": "npm run build && $(npm bin)/jest",
     "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/api-contracts dist/bin/",
+    "build": "npm run clean && $(npm bin)/tsc --project tsconfig.json --declaration && cp src/bin/rivet dist/bin/",
     "build:watch": "npm run watch"
   },
   "bin": {
-    "api-contracts": "./dist/bin/api-contracts"
+    "rivet": "./dist/bin/rivet"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "license": "ISC",

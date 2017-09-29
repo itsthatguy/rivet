@@ -1,5 +1,5 @@
 {
-  "name": "api-contracts-example-producer",
+  "name": "rivet-example-producer",
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "test": "$(npm bin)/jest"
   },
   "devDependencies": {
-    "api-contracts": "^0.2.0",
+    "@itg/rivet": "^0.2.0",
     "jest": "^20.0.4",
     "jest-json-schema": "^1.2.0",
     "supertest": "^3.0.0"

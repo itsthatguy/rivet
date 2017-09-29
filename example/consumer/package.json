@@ -1,19 +1,19 @@
 {
-  "name": "api-contracts-example-consumer",
+  "name": "rivet-example-consumer",
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "config": "$(npm bin)/api-contracts config",
+    "config": "$(npm bin)/rivet config",
     "test": "$(npm bin)/jest"
   },
   "devDependencies": {
+    "@itg/rivet": "^0.2.0",
     "jest": "^20.0.4",
-    "jest-json-schema": "^1.2.0",
-    "api-contracts": "^0.2.0"
+    "jest-json-schema": "^1.2.0"
   },
-  "apiContracts": {
+  "rivet": {
     "compiledContractsPath": "contracts/json/"
   }
 }

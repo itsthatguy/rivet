@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as glob from 'glob';
 
-const PREFIX = 'apiContracts';
+const PREFIX = 'rivet';
 
 const POSSIBLE_EXTENSIONS = [
   '*.ts',
@@ -28,7 +28,7 @@ export const getFiles = (prefix: string, extensions: string[], options: any): st
 export const getPkgConfig = (options: any): any => {
   const fullFilePath = path.resolve(options.cwd, 'package.json');
   delete require.cache[fullFilePath];
-  return require(fullFilePath).apiContracts || {};
+  return require(fullFilePath).rivet || {};
 };
 
 export const loadFiles = (paths: string[], options: any): any[] => {

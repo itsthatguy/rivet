@@ -1,6 +1,6 @@
 {
   "name": "@itg/rivet",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Suite of utilities for working with the API Contracts testing model.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

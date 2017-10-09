@@ -35,7 +35,7 @@ The location where contracts are compiled, relative to `appRoot`.
 ### `aliases`
 
 | alias: | `require("mypath")` | `require("mypath/endpoint.contract.js")` |
-|--------------------------------------------------|---------------------|------------------------------------------|
+|--------|---------------------|------------------------------------------|
 | `{}` | `"node_modules/mypath/index.js"` | `"node_modules/mypath/endpoint.contract.js"` |
 | `{ mypath: "/absolute/path/to/file.js" }` | `"/absolute/path/to/file.js"` | `error` |
 | `{ mypath: "/absolute/path" }` | `"/absolute/path/index.js"` | `"/absolute/path/endpoint.contract.js"` |

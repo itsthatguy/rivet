@@ -3,7 +3,7 @@ import { email } from '../../src/types';
 
 expect.extend(matchers);
 
-describe('compile', () => {
+describe('types.email', () => {
   it('matches various email formats', () => {
     const schema = {
       required: ['email'],

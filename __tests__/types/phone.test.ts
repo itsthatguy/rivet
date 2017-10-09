@@ -3,7 +3,7 @@ import { phone } from '../../src/types';
 
 expect.extend(matchers);
 
-describe('compile', () => {
+describe('types.phone', () => {
   it('matches various phone number formats', () => {
     const schema = {
       required: ['phone'],

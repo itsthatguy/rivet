@@ -6,9 +6,9 @@
   - [How it Works](#how-it-works)
   - [For example](#for-example)
 - [Getting Started](#getting-started)
-  - [Writing a Contract](#introduction)
-  - [Writing Tests](#writing-tests)
-  - [Publishing Contracts](publishing-contracts)
+- [Contracts](docs/contracts/)
+  - [Authoring](docts/contracts/authoring.md)
+  - [Publishing Contracts](docts/contracts/publishing.md)
   - [Importing Contracts](importing-contracts)
 
 ## Introduction

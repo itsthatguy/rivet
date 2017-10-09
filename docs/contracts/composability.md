@@ -19,13 +19,7 @@ Rivet ships with a few pre-defined data types.
 ```
 
 ### `phone`
-```json
-{
-  "id": "types.phone",
-  "type": "string",
-  "pattern": "((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}"
-}
-```
+
 
 ### `token`
 ```json

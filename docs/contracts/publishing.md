@@ -1,0 +1,2 @@
+
+`rivet publish`

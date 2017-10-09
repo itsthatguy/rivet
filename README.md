@@ -1,17 +1,7 @@
-# rivet
+# Rivet
+[![Build status](https://badge.buildkite.com/deb70e546dbbb4bed518f070f306544e35288f023bbe88814c.svg?branch=master)](https://buildkite.com/itsthatguy/rivet) [![npm version](https://badge.fury.io/js/%40itg%2Frivet.svg)](https://badge.fury.io/js/%40itg%2Frivet)
 
-## Table of contents
-- [Introduction](#introduction)
-  - [The Problem](#the-problem)
-  - [How it Works](#how-it-works)
-  - [For example](#for-example)
-- [Getting Started](docs/getting-started.md)
-- [Contracts](docs/contracts/)
-  - [Authoring](docs/contracts/authoring.md)
-  - [Publishing](docs/contracts/publishing.md)
-  - [Compiling](docs/contracts/compiling.md)
-  - [Configuration](docs/contracts/configuration.md)
-  - [Composability](docs/contracts/composability.md)
+[Docs](http://rivet.itg.sh) | [Issues](https://github.com/itsthatguy/rivet/issues)
 
 ## Introduction
 

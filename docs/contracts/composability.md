@@ -28,7 +28,11 @@ Rivet ships with a few pre-defined data types.
 
 ### `token`
 ```json
-h
+{
+  "id": "types.token",
+  "type": "string",
+  "pattern": "^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$"
+}
 ```
 
 ### `uri`

@@ -5,7 +5,7 @@
   - [The Problem](#the-problem)
   - [How it Works](#how-it-works)
   - [For example](#for-example)
-- [Getting Started](#getting-started)
+- [Getting Started](docs/getting-started.md)
 - [Contracts](docs/contracts/)
   - [Authoring](docs/contracts/authoring.md)
   - [Publishing](docs/contracts/publishing.md)

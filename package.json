@@ -35,6 +35,7 @@
     "@types/node": "^8.0.28",
     "@types/yargs": "^8.0.2",
     "jest": "^20.0.4",
+    "jest-json-schema": "^1.2.0",
     "strip-color": "^0.1.0",
     "ts-jest": "^21.0.0",
     "tslint": "^5.7.0",

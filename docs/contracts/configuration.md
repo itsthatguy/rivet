@@ -1,13 +1,31 @@
 # Configuration
 
-> Notes:
+If you don't want to use the Rivet default configuration, you can move your configuration into a separate file.
 
-> Available locations are merged
-> - `.contractrc`
-> - `contract.rc.[json|xml|js]`
-> - `package.json`
+## File-based Configuring
 
-> Document all configuration options
+### `package.json`
+
+```json
+{
+  "rivet": {
+    "contractsRoot": "contracts/"
+  }
+}
+```
+
+### Standalone file
+
+Rivet accepts configuration files with the conventions.
+
+- `.rivetrc`
+- `.rivetrc.[js|json]`
+- `rivetrc`
+- `rivetrc.[js|json]`
+
+> NOTE: Rivet configuration files are CommonJS modules. You can use any javascript here, as long as you export a configuration object.
+
+## Configuration options
 
 ### `appRoot`
 The root app path.

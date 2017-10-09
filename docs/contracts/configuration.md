@@ -9,8 +9,9 @@
 
 > Document all configuration options
 
-| option | type | description |
-|--------|------|-------------|
-|appRoot|string||
-|contractsRoot|string||
-|contractsPath|string||
+| option | type | default | description |
+|--------|------|---------|-------------|
+|appRoot|string|Directory with package.json|The root path|
+|contractsRoot|`contracts/`|string|The root path to your contracts folder|
+|contractsPath|glob string|`**/*.contract.json`||
+|compiledContractsRoot|

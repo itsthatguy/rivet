@@ -1,3 +1,0 @@
-# Compiling
-
-`rivet compile`

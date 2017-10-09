@@ -9,10 +9,6 @@
 
 > Document all configuration options
 
-
-|compiledContractsRoot|string|`contracts/json`||
-|aliases|array of objects|`{}`||
-
 ### `appRoot`
 The root app path.
 > Default: Root app directory with package.json

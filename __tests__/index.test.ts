@@ -85,19 +85,11 @@ describe('module', () => {
       expect(typesKeys).toEqual(expect.arrayContaining([
         'email',
         'phone',
-        'token',
+        'jwt',
         'uri',
         'uuid',
         'default'
       ]));
-    });
-
-    it('has the expected token type', () => {
-      expect(types.token).toEqual({
-        id: 'types.token',
-        type: 'string',
-        pattern: '^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$'
-      });
     });
 
     it('has the expected uri type', () => {

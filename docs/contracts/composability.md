@@ -8,6 +8,7 @@ Rivet ships with a few pre-defined data types.
 
 
 ### `email`
+
 ```json
 {
   "id": "types.phone",

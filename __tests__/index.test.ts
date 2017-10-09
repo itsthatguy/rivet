@@ -92,14 +92,6 @@ describe('module', () => {
       ]));
     });
 
-    it('has the expected email type', () => {
-      expect(types.email).toEqual({
-        id: 'types.email',
-        type: 'string',
-        format: 'email',
-      });
-    });
-
     it('has the expected token type', () => {
       expect(types.token).toEqual({
         id: 'types.token',

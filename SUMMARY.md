@@ -8,5 +8,5 @@
   * [Compiling](docs/contracts/compiling.md)
   * [Configuration](docs/contracts/configuration.md)
   * [Composability](docs/contracts/composability.md)
-* [CLI](docs/contracts/cli.md)
+* [CLI](docs/cli.md)
 

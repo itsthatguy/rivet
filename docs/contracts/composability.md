@@ -6,14 +6,13 @@ With contract tests composability you are able to reuse fundamental pieces of yo
 
 Rivet ships with a few pre-defined data types.
 
-
 ### `email`
 
 ```json
 {
-"id": "types.email",
-"type": "string",
-"format": "email"
+  "id": "types.email",
+  "type": "string",
+  "format": "email"
 }
 
 ```
@@ -23,14 +22,17 @@ Rivet ships with a few pre-defined data types.
 
 ### `token`
 ```json
+h
 ```
 
 ### `uri`
 ```json
+h
 ```
 
 ### `uuid`
 ```json
+h
 ```
 
 ## Data Types

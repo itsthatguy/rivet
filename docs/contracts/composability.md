@@ -16,7 +16,7 @@ Rivet ships with a few pre-defined data types.
 }
 ```
 
-> ```
+```
 const { types } = require('rivet');
 ``` 
 

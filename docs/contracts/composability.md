@@ -23,4 +23,3 @@ JSON Schema has a limited number of data types that it supports. For example, st
 > - support loading of your own data type module?
 
 
-

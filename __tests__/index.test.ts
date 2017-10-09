@@ -74,7 +74,7 @@ describe('module', () => {
 
       const response: any = generateSync(schema);
       expect(typeof response.name).toBe('string');
-    })
+    });
   });
 
   describe('.types', () => {
@@ -90,14 +90,6 @@ describe('module', () => {
         'uuid',
         'default'
       ]));
-    });
-
-    it('has the expected uri type', () => {
-      expect(types.uri).toEqual({
-        id: 'types.uri',
-        type: 'string',
-        pattern: '[0-9a-fA-F]{8,20}'
-      });
     });
 
     it('has the expected uuid type', () => {

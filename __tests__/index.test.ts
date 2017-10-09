@@ -100,14 +100,6 @@ describe('module', () => {
       });
     });
 
-    it('has the expected phone type', () => {
-      expect(types.phone).toEqual({
-        id: 'types.phone',
-        type: 'string',
-        pattern: '((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}'
-      });
-    });
-
     it('has the expected token type', () => {
       expect(types.token).toEqual({
         id: 'types.token',

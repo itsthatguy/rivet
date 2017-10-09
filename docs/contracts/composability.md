@@ -58,6 +58,8 @@ Rivet ships with a few pre-defined data types.
 
 JSON Schema has a limited number of data types that it supports. For example, string, number, boolean. However, you can build custom data type validation using the `pattern` key in JSON schema. This is useful for data types with a value such as`token`.
 
+There is no mechanism for stuffing these custom data types into Rivet, however, you can still store them in your project, or an npm module, and reference them on your own.
+
 **Custom **`token`** data type:**
 
 ```json
@@ -67,10 +69,5 @@ JSON Schema has a limited number of data types that it supports. For example, st
   "pattern": "^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$"
 }
 ```
-
-
-## How to add a custom data type
-> Notes:
-> - support loading of your own data type module?
 
 

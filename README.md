@@ -7,11 +7,11 @@
   - [For example](#for-example)
 - [Getting Started](#getting-started)
 - [Contracts](docs/contracts/)
-  - [Authoring](docts/contracts/authoring.md)
-  - [Publishing](docts/contracts/publishing.md)
-  - [Compiling](docts/contracts/compiling.md)
-  - [Configuration](docts/contracts/configuration.md)
-  - [Composability](docts/contracts/composability.md)
+  - [Authoring](docs/contracts/authoring.md)
+  - [Publishing](docs/contracts/publishing.md)
+  - [Compiling](docs/contracts/compiling.md)
+  - [Configuration](docs/contracts/configuration.md)
+  - [Composability](docs/contracts/composability.md)
 
 ## Introduction
 

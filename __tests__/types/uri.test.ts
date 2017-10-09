@@ -7,14 +7,15 @@ describe('types.uri', () => {
   it('matches various uri formats', () => {
     const schema = {
       required: ['url'],
-      properties: { uri },
+      properties: { url: uri },
     };
 
-    expect({ url: 'foo.bar' }).toMatchSchema(schema);
     expect({ url: 'http://foo.bar' }).toMatchSchema(schema);
     expect({ url: 'https://foo.bar' }).toMatchSchema(schema);
     expect({ url: 'http://foo.bar/baz' }).toMatchSchema(schema);
     expect({ url: 'https://foo.bar/baz' }).toMatchSchema(schema);
+    expect({ url: 'http://foo.bar:3000' }).toMatchSchema(schema);
+    expect({ url: 'http://foo.bar:3000/baz' }).toMatchSchema(schema);
     expect({ url: 'git://foo.bar/baz' }).toMatchSchema(schema);
     expect({ url: 'ssh://git@foo.bar/baz' }).toMatchSchema(schema);
     expect({ url: 'ssh://git@foo.bar/baz.git' }).toMatchSchema(schema);

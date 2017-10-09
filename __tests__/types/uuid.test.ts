@@ -4,7 +4,7 @@ import { uuid } from '../../src/types';
 expect.extend(matchers);
 
 describe('types.uuid', () => {
-  it('matches various uuid formats', () => {
+  it('matches various uuids', () => {
     const schema = {
       required: ['id'],
       properties: { id: uuid },

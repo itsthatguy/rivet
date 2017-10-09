@@ -2,21 +2,6 @@
 
 With contract tests composability you are able to reuse fundamental pieces of your contracts, such as data types, to make your them much more maintainable. We do this by leveraging CommonJS modules, and compiling your contracts to JSON.
 
-## Defaults
-
-Rivet ships with a few pre-defined data types.
-
-
-### `email`
-
-```json
-{
-  "id": "types.email",
-  "type": "string",
-  "format": "email"
-}
-
-```
 
 ### `phone`
 

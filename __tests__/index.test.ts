@@ -74,7 +74,7 @@ describe('module', () => {
 
       const response: any = generateSync(schema);
       expect(typeof response.name).toBe('string');
-    })
+    });
   });
 
   describe('.types', () => {
@@ -85,52 +85,11 @@ describe('module', () => {
       expect(typesKeys).toEqual(expect.arrayContaining([
         'email',
         'phone',
-        'token',
+        'jwt',
         'uri',
         'uuid',
         'default'
       ]));
-    });
-
-    it('has the expected email type', () => {
-      expect(types.email).toEqual({
-        id: 'types.email',
-        type: 'string',
-        format: 'email',
-      });
-    });
-
-    it('has the expected phone type', () => {
-      expect(types.phone).toEqual({
-        id: 'types.phone',
-        type: 'string',
-        pattern: '((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}'
-      });
-    });
-
-    it('has the expected token type', () => {
-      expect(types.token).toEqual({
-        id: 'types.token',
-        type: 'string',
-        pattern: '^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$'
-      });
-    });
-
-    it('has the expected uri type', () => {
-      expect(types.uri).toEqual({
-        id: 'types.uri',
-        type: 'string',
-        pattern: '[0-9a-fA-F]{8,20}'
-      });
-    });
-
-    it('has the expected uuid type', () => {
-      expect(types.uuid).toEqual({
-        id: 'types.uuid',
-        type: 'string',
-        format: 'uuid',
-        pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[34][0-9a-fA-F]{3}-[89ab][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'
-      });
     });
   });
 });

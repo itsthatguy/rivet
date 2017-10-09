@@ -20,8 +20,13 @@ Rivet accepts configuration files with the conventions.
 
 - `.rivetrc`
 - `.rivetrc.[js|json]`
+- `.rivet.[js|json]`
 - `rivetrc`
 - `rivetrc.[js|json]`
+- `rivet.[js|json]`
+
+All configurations found will be merged into a single configuration object. That means, if you have both a rivet configuration file, and rivet configuration defined in `package.json`, they will be merged. `package.json` is the last file read, and anything specified will overwrite other configurations.
+
 
 > NOTE: Rivet configuration files are CommonJS modules. You can use any javascript here, as long as you export a configuration object.
 

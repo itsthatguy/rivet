@@ -8,8 +8,10 @@
 - [Getting Started](#getting-started)
 - [Contracts](docs/contracts/)
   - [Authoring](docts/contracts/authoring.md)
-  - [Publishing Contracts](docts/contracts/publishing.md)
-  - [Importing Contracts](importing-contracts)
+  - [Publishing](docts/contracts/publishing.md)
+  - [Compiling](docts/contracts/compiling.md)
+  - [Configuration](docts/contracts/configuration.md)
+  - [Composability](docts/contracts/composability.md)
 
 ## Introduction
 

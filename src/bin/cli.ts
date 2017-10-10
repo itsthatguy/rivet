@@ -1,16 +1,24 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 
-import { log, textHelpers } from './log';
-import Config from './config';
+import { log, textHelpers } from '../lib/log';
+import Config from '../lib/config';
 
 import {
+  initHandler,
   linkHandler,
   publishHandler,
   versionHandler,
   watchHandler,
   compileHandler,
 } from './handlers';
+
+const initOptions: yargs.CommandModule = {
+  command: 'init [name]',
+  describe: 'Scaffolds basic rivet configuration, files, and directories',
+  aliases: ['init'],
+  handler: initHandler,
+};
 
 const versionOptions: yargs.CommandModule = {
   command: 'version <version|major|minor|patch>',
@@ -87,11 +95,7 @@ const { version: pkgVersion } = require('../../package.json');
 
 // tslint:disable-next-line: no-unused-expression
 yargs
-.command(versionOptions)
-.command(publishOptions)
-.command(linkOptions)
 .command(compileOptions)
-.command(watchOptions)
 .command({
   command: 'config',
   describe: 'Displays current configuration options',
@@ -99,6 +103,11 @@ yargs
     process.stdout.write(require('util').inspect(Config, false, null));
   }
 })
+.command(initOptions)
+.command(linkOptions)
+.command(publishOptions)
+.command(versionOptions)
+.command(watchOptions)
 .help()
 .check((argv: any): boolean => {
   if (argv._.length === 0) { yargs.showHelp(); }

@@ -15,6 +15,6 @@ const print = (logger: any, type: string, message: string, fallbackType: string)
   logger(`${textHelpers.pkg} ${msgType} ${msg}`);
 };
 
-export const log = (type, message?) => print(process.stdout.write, type, message, 'info');
-export const warn = (type, message?) => print(process.stdout.write, type, message, 'warn');
-export const error = (type, message?) => print(process.stderr.write, type, message, 'error');
+export const log = (type, message?) => print(process.stdout.write.bind(process.stdout), type, message, 'info');
+export const warn = (type, message?) => print(process.stdout.write.bind(process.stdout), type, message, 'warn');
+export const error = (type, message?) => print(process.stderr.write.bind(process.stderr), type, message, 'error');

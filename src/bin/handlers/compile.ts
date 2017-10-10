@@ -3,18 +3,18 @@ import * as glob from 'glob';
 import { join, parse, resolve } from 'path';
 import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
-import { log, warn, error } from './log';
-import { IHandlerArgs } from './handlers';
+import { log, warn, error } from '../../lib/log';
+import { IHandlerArgs } from './types';
 
-import Config from './config';
+import Config from '../../lib/config';
 
-const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
-  const dirpath = resolve(Config.compiledContractsRoot, dir);
+export const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
+  const dirpath = resolve(dir);
   fs.ensureDirSync(dirpath);
 
   const outputPath = resolve(dirpath, filename);
-  log(`Saving JSON contract: ${dir}/${filename}`);
-  return fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+  log(`Saving JSON contract: ${dirpath}/${filename}`);
+  return fs.writeFileSync(outputPath, data);
 };
 
 const attemptClean = (clean: string): void => {
@@ -49,7 +49,7 @@ const globOptions = (ignore: string[] | boolean[] = [], out: string, cwd: string
   );
 };
 
-export const compileHandler = (argv: IHandlerArgs): any[] => {
+export default (argv: IHandlerArgs): any[] => {
   log('Compiling contracts to JSON');
   const { clean, out, src: argSrc, ignore, cwd } = argv;
   const pathGlob = argSrc || '**/*.contract.js';
@@ -68,7 +68,8 @@ export const compileHandler = (argv: IHandlerArgs): any[] => {
     delete require.cache[require.resolve(contractPath)];
     const data = require(contractPath);
 
-    const object = saveToFile(data, `${name}.json`, dir);
+    const dirpath = resolve(Config.compiledContractsRoot, dir);
+    const object = saveToFile(JSON.stringify(data, null, 2), `${name}.json`, dirpath);
     result.push(object);
 
     return result;

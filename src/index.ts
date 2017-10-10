@@ -1,7 +1,7 @@
 import { join, resolve } from 'path';
 import * as types from './types';
 import * as jsf from 'json-schema-faker';
-import Config from './bin/config';
+import Config from './lib/config';
 
 const getFilePath = (schemaPath: string): string => {
   const regex = /^(.+)\//;

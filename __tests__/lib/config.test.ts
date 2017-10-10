@@ -1,5 +1,5 @@
 import { load, Config } from '../../src';
-import { configDefaults } from '../../src/bin/config';
+import { configDefaults } from '../../src/lib/config';
 
 describe('config', () => {
   afterEach(() => {

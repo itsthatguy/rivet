@@ -1,6 +1,6 @@
-import { log } from './log';
+import { log } from '../lib/log';
 import * as path from 'path';
-import Config from './config';
+import Config from '../lib/config';
 
 export interface IRunCommandOptions {
   NODE_ENV?: string;

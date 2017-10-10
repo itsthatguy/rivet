@@ -5,6 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
+      "curly": [false],
       "no-console": [false],
       "quotemark": [true, "single", "jsx-double"],
       "semicolon": [true, "always"],

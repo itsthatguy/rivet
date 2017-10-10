@@ -1,6 +1,6 @@
 import runCommand from '../../src/bin/runCommand';
 import * as path from 'path';
-import Config from '../../src/bin/config';
+import Config from '../../src/lib/config';
 
 jest.mock('child_process');
 

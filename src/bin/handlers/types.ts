@@ -1,5 +1,4 @@
 export interface IHandlerArgs {
-  init?: string;
   version?: string | boolean;
   clean?: string;
   out?: string;

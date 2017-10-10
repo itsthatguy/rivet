@@ -1,7 +1,13 @@
 {
   "name": "@itg/rivet",
   "version": "0.2.3",
-  "description": "Suite of utilities for working with the API Contracts testing model.",
+  "description": "Suite of utilities for working with the Rivet consumer-driven API contacts testing model.",
+  "keywords": [
+    "rivet",
+    "api",
+    "test",
+    "contract"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -19,6 +25,15 @@
     "rivet": "./dist/bin/rivet"
   },
   "author": "Kevin Altman <kevin@itsthatguy.com>",
+  "homepage": "http://rivet.itg.sh",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/itsthatguy/rivet.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/itsthatguy/rivet/issues",
+    "email" : "kevin@itsthatguy.com"
+  },
   "license": "ISC",
   "dependencies": {
     "chokidar": "^1.7.0",

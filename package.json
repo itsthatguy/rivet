@@ -1,6 +1,6 @@
 {
   "name": "@itg/rivet",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Suite of utilities for working with the Rivet consumer-driven API contacts testing model.",
   "keywords": [
     "rivet",
@@ -29,12 +29,12 @@
   "author": "Kevin Altman <kevin@itsthatguy.com>",
   "homepage": "http://rivet.itg.sh",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/itsthatguy/rivet.git"
+    "type": "git",
+    "url": "https://github.com/itsthatguy/rivet.git"
   },
   "bugs": {
-    "url" : "https://github.com/itsthatguy/rivet/issues",
-    "email" : "kevin@itsthatguy.com"
+    "url": "https://github.com/itsthatguy/rivet/issues",
+    "email": "kevin@itsthatguy.com"
   },
   "license": "ISC",
   "dependencies": {

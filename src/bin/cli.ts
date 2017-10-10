@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 
-import { log, textHelpers } from './log';
-import Config from './config';
+import { log, textHelpers } from '../lib/log';
+import Config from '../lib/config';
 
 import {
   linkHandler,

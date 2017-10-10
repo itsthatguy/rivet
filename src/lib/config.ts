@@ -1,4 +1,4 @@
-import * as configLoader from '../util/configLoader';
+import * as configLoader from '../lib/configLoader';
 import * as fs from 'fs';
 
 export interface IAlias {

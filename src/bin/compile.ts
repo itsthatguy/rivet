@@ -3,10 +3,10 @@ import * as glob from 'glob';
 import { join, parse, resolve } from 'path';
 import * as fs from 'fs-extra';
 import { existsSync } from 'fs';
-import { log, warn, error } from './log';
+import { log, warn, error } from '../lib/log';
 import { IHandlerArgs } from './handlers';
 
-import Config from './config';
+import Config from '../lib/config';
 
 const saveToFile = (data: any, filename: string, dir: string = 'data/'): Promise<any> => {
   const dirpath = resolve(Config.compiledContractsRoot, dir);

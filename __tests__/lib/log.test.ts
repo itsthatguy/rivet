@@ -2,7 +2,7 @@ import {
   log,
   warn,
   error,
-} from '../../src/bin/log';
+} from '../../src/lib/log';
 
 describe('log', () => {
   afterEach(process.resetLog);

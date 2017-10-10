@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-import * as configLoader from '../../src/util/configLoader';
+import * as configLoader from '../../src/lib/configLoader';
 
 const options = {
   cwd: 'example/consumer/'

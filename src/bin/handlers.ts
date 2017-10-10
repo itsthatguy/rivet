@@ -1,8 +1,8 @@
 import { CommandModule } from 'yargs';
 import runCommand from './runCommand';
-import { log } from './log';
+import { log } from '../lib/log';
 import { compileHandler } from './compile';
-import Config from './config';
+import Config from '../lib/config';
 
 export interface IHandlerArgs {
   version?: string | boolean;

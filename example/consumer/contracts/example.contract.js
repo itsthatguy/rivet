@@ -1,4 +1,4 @@
-const { types } = require('@itg/rivet');
+const { types } = require('rivet');
 
 module.exports = {
   title: 'Example Contract',
@@ -6,7 +6,7 @@ module.exports = {
 
   properties: {
     name: { type: 'string' },
-    token: types.token,
+    token: types.jwt,
     description: { type: 'string' },
     updated_at: { type: 'string' }
   }

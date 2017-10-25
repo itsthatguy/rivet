@@ -44,6 +44,7 @@
     "glob": "^7.1.2",
     "inquirer": "^3.3.0",
     "json-schema-faker": "^0.5.0-rc11",
+    "rivet": "file:./",
     "yargs": "^8.0.2"
   },
   "devDependencies": {

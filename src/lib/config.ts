@@ -1,41 +1,45 @@
 import * as configLoader from '../lib/configLoader';
 import * as fs from 'fs';
+import { resolve } from 'path';
 
 export interface IAlias {
   [alias: string]: string;
 }
 
 export interface IConfig {
-  appRoot?: string;
-  contractsRoot?: string;
-  contractsPath?: string;
-  compiledContractsRoot?: string;
   aliases?: IAlias;
+  appRoot?: string;
+  compiledContractsRoot?: string;
+  contractsPath?: string;
+  contractsRoot?: string;
+  pkgRoot?: string;
   set?(any): IConfig;
 }
 
 export const configDefaults: IConfig = {
+  aliases: {},
   appRoot: fs.realpathSync(process.cwd()),
-  contractsRoot: 'contracts/',
-  contractsPath: '**/*.contract.js',
   compiledContractsRoot: 'contracts/json/',
-  aliases: {}
+  contractsPath: '**/*.contract.js',
+  contractsRoot: 'contracts/',
 };
 
 const userConfig = configLoader.load(configDefaults.appRoot);
 
 export class Config implements IConfig {
-  public appRoot;
-  public contractsRoot;
-  public contractsPath;
-  public compiledContractsRoot;
   public aliases;
+  public appRoot;
+  public compiledContractsRoot;
+  public contractsPath;
+  public contractsRoot;
+  public pkgRoot;
 
   constructor(options: IConfig = {}) {
     Object.assign(this, {
       ...configDefaults,
       ...userConfig,
       ...options,
+      pkgRoot: resolve(__dirname, '../../'),
     });
   }
 

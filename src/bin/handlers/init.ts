@@ -58,6 +58,6 @@ export default async (argv: IHandlerArgs): Promise<any> => {
   const config = await configPrompt(useDefaults);
 
   saveToFile(`module.exports = ${JSON.stringify(config, null, 2)};`, '.rivet.config.js', config.appRoot);
-  const exampleContract = readFileSync(resolve('./example/consumer/contracts/example.contract.js'), 'utf8');
+  const exampleContract = readFileSync(resolve(Config.pkgRoot, './example/consumer/contracts/example.contract.js'), 'utf8');
   saveToFile(exampleContract, 'example.contract.js', config.contractsRoot);
 };

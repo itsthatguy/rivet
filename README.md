@@ -17,7 +17,7 @@ The primary actors involved are the consumer and the producer:
 
 Everyone today has responsibility over applications that consume multiple APIs. Trouble arises when you'd like to make a change to an API without breaking other consumers.
 
-People use tools like API Blueprint or slacker or tests within the API's code itself to specify the requirements for an API. However, these tools and strategies do not account for the consuming applications that may break. You can change a test with the APIs codebase and not know whether you've broken any given consumer.
+People use tools like API Blueprint or Swagger or tests within the API's code itself to specify the requirements for an API. However, these tools and strategies do not account for the consuming applications that may break. You can change a test with the APIs codebase and not know whether you've broken any given consumer.
 
 Our strategy reverses this paradigm. When we allow the consumer to specify the requirements for an API (or *producer*), we can make changes to an producer and know immediately which consumers are compatible with that change. ~~Additionally, we know when a version of an API can be retired, because we know when there are no more consumers of that API.~~
 

@@ -1,6 +1,6 @@
 {
   "name": "@itg/rivet",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "Suite of utilities for working with the Rivet consumer-driven API contacts testing model.",
   "keywords": [
     "rivet",

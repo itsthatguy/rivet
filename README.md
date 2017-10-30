@@ -1,5 +1,5 @@
 # Rivet
-[![Build status](https://badge.buildkite.com/deb70e546dbbb4bed518f070f306544e35288f023bbe88814c.svg?branch=master)](https://buildkite.com/itsthatguy/rivet) [![npm version](https://badge.fury.io/js/%40itg%2Frivet.svg)](https://badge.fury.io/js/%40itg%2Frivet)
+[![Build status](https://badge.buildkite.com/deb70e546dbbb4bed518f070f306544e35288f023bbe88814c.svg?branch=master)](https://buildkite.com/itsthatguy/rivet) [![npm version](https://badge.fury.io/js/rivet.svg)](https://badge.fury.io/js/rivet)
 
 [Docs](http://rivet.itg.sh) | [Issues](https://github.com/itsthatguy/rivet/issues)
 

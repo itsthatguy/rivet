@@ -3,11 +3,11 @@
 
 [Docs](http://rivet.itg.sh) | [Issues](https://github.com/itsthatguy/rivet/issues)
 
-![Rivet](docs/logo.png)
+# ![Rivet](/assets/logo.png)
 
-Rapid, modern web service development, typically involving layers of microservices, reaches a point where a single non-backwards compatible API change affects multiple teams, leading to cascading service failures and finger-pointing. **Rivet** describes a solution where each service tests itself against real clients in order to assert that no interfaces have broken any clients at each step of the way.
+Rapid, modern web service development, which typically involves layers of microservices, reaches a point where a single, non-backwards-compatible API change affects multiple teams. This in turn leads to cascading service failures and finger-pointing. **Rivet** defines a solution where each service tests itself against real clients to assert that no interfaces have broken any clients at each step of the way.
 
-## Vocabulary
+### Vocabulary
 
 Rivet uses _services_ and _consumers_ in describing these relationships.
 
@@ -18,9 +18,13 @@ Rivet uses _services_ and _consumers_ in describing these relationships.
 
 With these types of service relationships, trouble arises when you'd like to make a change to an API without breaking other consumers.
 
-People use tools like API Blueprint or Swagger or tests within the API's code itself to specify the requirements for an API. However, these tools and strategies do not account for the consuming applications that may break. You can change a test with the APIs codebase and not know whether you've broken any given consumer.
+People use tools like API Blueprint, Swagger, or tests within the API's code itself to specify the requirements for an API. However, these tools and strategies do not account for the consuming applications that may break. You can change a response within the API's codebase and not know whether you've broken any given consumer.
 
-By having the _consumers_ define their requirements through contracts, we gain direct visibility into any _consumer_ breaking change to a _service_. For example, if you are forced into a making a backwards incompatible change \(due to security, something upstream, or something simply out of your control\), the _service_ being aware of each client's requirements tell you exactly what clients need to be updated to handle the change. Whether you have versioned api mechanisms or not.
+## The Solution
+
+By having the _consumers_ define their requirements through contracts, you gain direct visibility into any _consumer_-breaking change to a _service_. For example, if you are forced to make a backwards-incompatible change \(due to security, something upstream, or something simply out of your control\), making the _service_ aware of each client's requirements will tell you exactly what clients need to be updated to handle the change, whether or not you have versioned API mechanisms.
+
+
 
 ![](/assets/breaking-changes.png)
 
@@ -28,7 +32,7 @@ By having the _consumers_ define their requirements through contracts, we gain d
 
 For example, take a factory that manufactures widgets:
 
-Two customers come to have widgets made. The factory has a base widget that it modifies for different customers needs.
+Two customers come to have widgets made. The factory has a base widget _\(with twist it, bop it, spin it\)_ that it modifies for different customers' needs, defined in a contract.
 
 * **Customer 1:** widget with twist it, bop it, spin it
 * **Customer 2:** widget with twist it, spin it
@@ -39,7 +43,7 @@ Two customers come to have widgets made. The factory has a base widget that it m
 
 * **Customer 2:** Doesn't notice the change because it's not required
 
-If the factory had a check in place to ensure that their client's needs were met, they would have known to add a _bop it_ for Customer 1.
+If the factory had checked the contracts that were in place, they would have known to add a _bop it_ for Customer 1. In this scenario, the Factory is a _service_, and Customers are _consumers_. It's absurd to imagine a Factory not checking manufacturing contracts before delivering their widgets. In the same way, it's absurd to imagine that in software, a _service_ doesn't check requirements before delivering a change.
 
 # Getting Started
 
@@ -116,15 +120,14 @@ describe('My Api', () => {
     const schema = loadSchema('example.contract');
 
     request(app)
-      .get('/example')
-      .set('Accept', 'application/json')
-      .expect(200)
-      .then(response => {
+    .get('/example')
+    .set('Accept', 'application/json')
+    .expect(200)
+    .then(response => {
         expect(response).toMatchSchema(schema);
-      });
+    });
   });
 });
-
 ```
 
 ### Stubbing Data with a Contract
@@ -135,19 +138,24 @@ const nock = require('nock');
 const axios = require('axios');
 
 describe('My Api', () => {
-  it('satisfies the contract', done => {
+  it('satisfies the contract', (done) => {
     const stubbedData = generateSync('example.contract');
 
     nock('http://fakeser.ver')
-      .get('/example')
-      .reply(200, stubbedData);
+    .get('/example')
+    .reply(200, stubbedData);
 
-    axios.get('http://fakeser.ver/example').then(response => {
+    axios.get('http://fakeser.ver/example')
+    .then((response) => {
       const payloadKeys = Object.keys(response.data);
 
-      expect(payloadKeys).toEqual(
-        expect.arrayContaining(['userId', 'id', 'title', 'body'])
-      );
+      expect(payloadKeys)
+      .toEqual(expect.arrayContaining([
+        'userId',
+        'id',
+        'title',
+        'body'
+      ]));
 
       done();
     });

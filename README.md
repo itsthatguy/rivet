@@ -106,25 +106,29 @@ Here's an example with jest, showing how to validate that your api satisfies you
 
 ```js
 const { matchers } = require('jest-json-schema');
-const { loadSchema } = require('rivet');
+const { load } = require('rivet');
 const request = require('supertest');
 const express = require('express');
 const route = require('./route');
 
-const app = express();
+// add the jest-json-schema matchers to expect
+expect.extend(matchers);
 
+// setup the express app, with your new route
+const app = express();
 app.get('/example', route);
 
 describe('My Api', () => {
   it('satisfies the contract', () => {
-    const schema = loadSchema('example.contract');
+    const schema = load('example.contract');
 
     request(app)
     .get('/example')
     .set('Accept', 'application/json')
     .expect(200)
     .then(response => {
-        expect(response).toMatchSchema(schema);
+      // Validate the response with the contract
+      expect(response).toMatchSchema(schema);
     });
   });
 });

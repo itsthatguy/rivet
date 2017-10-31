@@ -3,7 +3,7 @@
 
 [Docs](http://rivet.itg.sh) | [Issues](https://github.com/itsthatguy/rivet/issues)
 
-# ![Rivet](/assets/logo.png)
+# ![Rivet](docs/logo.png)
 
 Rapid, modern web service development, which typically involves layers of microservices, reaches a point where a single, non-backwards-compatible API change affects multiple teams. This in turn leads to cascading service failures and finger-pointing. **Rivet** defines a solution where each service tests itself against real clients to assert that no interfaces have broken any clients at each step of the way.
 
@@ -26,7 +26,7 @@ By having the _consumers_ define their requirements through contracts, you gain 
 
 
 
-![](/assets/breaking-changes.png)
+![](docs/breaking-changes.png)
 
 ## Generic Metaphor
 

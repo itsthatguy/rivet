@@ -1,6 +1,6 @@
 {
   "name": "rivet",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Suite of utilities for working with the Rivet consumer-driven API contacts testing model.",
   "keywords": [
     "rivet",

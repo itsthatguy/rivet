@@ -14,6 +14,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "hoek": "^4.2.1"
   }
 }

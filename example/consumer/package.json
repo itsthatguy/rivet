@@ -15,5 +15,8 @@
   },
   "rivet": {
     "compiledContractsPath": "contracts/json/"
+  },
+  "dependencies": {
+    "hoek": "^4.2.1"
   }
 }
